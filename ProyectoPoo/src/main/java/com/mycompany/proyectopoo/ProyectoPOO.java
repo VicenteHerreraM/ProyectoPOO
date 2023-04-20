@@ -26,6 +26,7 @@ public class ProyectoPOO {
         int opcion1;
         Usuario user=new Usuario();
         Scanner Entrada=new Scanner(System.in);
+        Scanner rut = new Scanner(System.in);
 
         System.out.println("""
                 ------------------------
@@ -51,13 +52,19 @@ public class ProyectoPOO {
                     user.imprimirDatos(user.getUsers());
                     break;
                 case 3:
-                    user.modificarDatos();
+                    user.actualizarDatos();
                     break;
                 case 4:
-                    user.eliminarDatos(user.getUsers());
+                    System.out.println("Escriba el rut del usuario que desea eliminar");
+                    String rutUsuario = rut.nextLine();
+                    if(user.eliminarDatos(rutUsuario) == true){
+                        System.out.println("El usuario ha sido eliminado");
+                    }else{
+                        System.out.println("No se ha encontrado el usuario, porfavor, verifique el rut");
+                    }
                     break;
                 case 5:
-                    //user.actualizarDatos();
+                    //Posible funcion para uso de excel
                     break;
                 case 0:
                     System.out.println("""

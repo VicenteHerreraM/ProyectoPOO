@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
+
 /**
  *
  * @author vice
@@ -201,32 +202,59 @@ public class Usuario {
             i++;
         }
     }
-    public void modificarDatos(){
-    }
     
-    //En teoria elimina el elemento, pero si encuentra al usuario, este tira error y se cae el programa.
-    //En caso de no encontrarlo, vuelve exitosamente al menu de antes.
-    //Solo esta encontrando el primer usuario
-    public void eliminarDatos(ArrayList<Usuario> users){
-        int i = 0;
-        Scanner rut = new Scanner(System.in);
-        System.out.println("Ingrese el rut del usuario que desee eliminar");
-        String rutUsuario = rut.nextLine();
-        //public ArrayList<Usuario> users = new  ArrayList<Usuario>;
-        for (Usuario user : users){
-            if(rutUsuario.equals(user.getRut())){
-                users.remove(i);
-                System.out.println("El usuario ha sido eliminado");
-            }else{
-                System.out.println("No se ha encontrado el usuario para eliminar\n");
-                break;
-                
-            
-            }
-        i++;
-        }
-    }
+    
+    
+    public void actualizarDatos(String rut){
+        Scanner opciones = new Scanner(System.in);
+        Scanner mail = new Scanner(System.in);
+        Scanner password = new Scanner(System.in);
+        Scanner age = new Scanner(System.in);
+        Scanner weight = new Scanner(System.in);
+        Scanner height = new Scanner(System.in);
+        
+        int opcion = opciones.nextInt();
+        String constrasenia =  password.nextLine();
+        int edad = age.nextInt();
+        float peso = weight.nextFloat();
+        float altura = height.nextFloat();
+        
+        do{
+            System.out.println("¿Que dato desea modificar?");
+            System.out.println("1- Correo electronico");
+            System.out.println("2- Contraseña");
+            System.out.println("3- Edad");
+            System.out.println("4- Peso");
+            System.out.println("5- Altura");
+        
+        
+        switch(opcion){
+            case 1:
+                System.out.println("Escriba su nuevo correo electronico");
+                String correo =  mail.nextLine();
+                if(verificarMail(correo) == true){
+                    
+                    System.out.println("El correo ha sido cambiado");
+                }
 
+            
+            
+            
+        }
+        
+    }while (opcion != 0);
+    
+    }
+//Elimina a cualquier usuario de la lista, sin embargo, a veces tiene problemas en actualizar la lista si le pides imprimirla inmediatamente despues de eliminar un dato por alguna razon
+    public boolean eliminarDatos(String rut){        
+        for(int i = 0 ; i < users.size() ; i++){
+            if(rut.equals(users.get(i).rut)){
+                users.remove(i);
+                return true;
+            }
+        }
+    return false;
+    }
 }
 
 
