@@ -39,7 +39,7 @@ public class ProyectoPOO {
             System.out.println("2- Imprimir");
             System.out.println("3- Modificar");
             System.out.println("4- Eliminar");
-            System.out.println("5- Actualizar");
+            System.out.println("5- Agregar");
             System.out.println("0- Salir del programa");
             opcion1=Entrada.nextInt();
 
@@ -52,7 +52,8 @@ public class ProyectoPOO {
                     user.imprimirDatos(user.getUsers());
                     break;
                 case 3:
-                    user.actualizarDatos();
+                    
+                    user.actualizarDatos(rut.nextLine());
                     break;
                 case 4:
                     System.out.println("Escriba el rut del usuario que desea eliminar");
@@ -64,7 +65,7 @@ public class ProyectoPOO {
                     }
                     break;
                 case 5:
-                    //Posible funcion para uso de excel
+                   user.agregarUsuario();
                     break;
                 case 0:
                     System.out.println("""

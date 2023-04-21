@@ -184,6 +184,52 @@ public class Usuario {
             System.out.println("No se han encontrado datos");
         }
     }
+    
+    
+    //Agrega al usuario exitosamente a la lista,sin embargo, por alguna razon se salta la linea para registrar la dieta
+    
+    public void agregarUsuario() throws FileNotFoundException {
+	String mail, password, name, lastName, rut , typeDiet , typeRoutine;
+	float height , weight; 
+	int age;
+
+        Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Ingrese su correo electronico");
+        mail = entrada.nextLine();
+        
+        System.out.println("Ingrese contraseña");
+        password = entrada.nextLine();
+        
+        System.out.println("Ingrese Nombre");
+        name = entrada.nextLine();
+        
+        System.out.println("Ingrese Apellido");
+        lastName = entrada.nextLine();
+        
+        System.out.println("Ingrese Rut");
+        rut = entrada.nextLine();
+        
+        System.out.println("Ingrese Altura");
+        height = entrada.nextFloat();
+
+        System.out.println("Ingrese Peso");
+        weight = entrada.nextFloat();
+
+        System.out.println("Ingrese Edad");
+        age = entrada.nextInt();
+
+        System.out.println("Ingrese Tipo de dieta");
+        typeDiet = entrada.nextLine(); //Por alguna razon, esta es la linea de codigo la ingresa vacia
+        
+        System.out.println("Ingrese Tipo de rutina");
+        typeRoutine = entrada.nextLine();
+        
+        users.add(new Usuario(mail , password, name , lastName , rut , height , age , weight , typeDiet , typeRoutine));
+        
+    }
+    
+    
     public void imprimirDatos(ArrayList<Usuario> users){
         int i=1;
         for (Usuario user : users) {
@@ -207,17 +253,13 @@ public class Usuario {
     
     public void actualizarDatos(String rut){
         Scanner opciones = new Scanner(System.in);
-        Scanner mail = new Scanner(System.in);
-        Scanner password = new Scanner(System.in);
-        Scanner age = new Scanner(System.in);
-        Scanner weight = new Scanner(System.in);
-        Scanner height = new Scanner(System.in);
+        Scanner alfanumerico = new Scanner(System.in);
+        Scanner numDecimal = new Scanner(System.in);
+        Scanner numEnteros = new Scanner(System.in);
+
         
         int opcion = opciones.nextInt();
-        String constrasenia =  password.nextLine();
-        int edad = age.nextInt();
-        float peso = weight.nextFloat();
-        float altura = height.nextFloat();
+
         
         do{
             System.out.println("¿Que dato desea modificar?");
@@ -231,15 +273,6 @@ public class Usuario {
         switch(opcion){
             case 1:
                 System.out.println("Escriba su nuevo correo electronico");
-                String correo =  mail.nextLine();
-                if(verificarMail(correo) == true){
-                    
-                    System.out.println("El correo ha sido cambiado");
-                }
-
-            
-            
-            
         }
         
     }while (opcion != 0);
