@@ -52,8 +52,9 @@ public class ProyectoPOO {
                     user.imprimirDatos(user.getUsers());
                     break;
                 case 3:
-                    
-                    user.actualizarDatos(rut.nextLine());
+                    System.out.println("Escriba el rut para identificarlo");
+                    String rutPorBuscar = rut.nextLine();
+                    user.actualizarDatos(rutPorBuscar);
                     break;
                 case 4:
                     System.out.println("Escriba el rut del usuario que desea eliminar");

@@ -249,35 +249,48 @@ public class Usuario {
         }
     }
     
+    public int obtenerPosicionUsuario(String rut){
+        for (int i = 0 ; i < users.size() ; i++){
+            if(rut.equals(users.get(i).rut)){
+                return i;
+            }
+        }
+       return 0;     
+    }
     
-    
+    //Entra en bucle si logra accedar al menu mostrado.
+    //falta terminar esta funcion.
     public void actualizarDatos(String rut){
+        
         Scanner opciones = new Scanner(System.in);
         Scanner alfanumerico = new Scanner(System.in);
         Scanner numDecimal = new Scanner(System.in);
         Scanner numEnteros = new Scanner(System.in);
-
-        
         int opcion = opciones.nextInt();
+        
+        int pos = obtenerPosicionUsuario(rut);
+            do{
+                System.out.println("¿Que dato desea modificar?");
+                System.out.println("1- Correo electronico");
+                System.out.println("2- Contraseña");
+                System.out.println("3- Edad");
+                System.out.println("4- Peso");
+                System.out.println("5- Altura");
+                System.out.println(pos);
+                
 
-        
-        do{
-            System.out.println("¿Que dato desea modificar?");
-            System.out.println("1- Correo electronico");
-            System.out.println("2- Contraseña");
-            System.out.println("3- Edad");
-            System.out.println("4- Peso");
-            System.out.println("5- Altura");
-        
-        
-        switch(opcion){
-            case 1:
-                System.out.println("Escriba su nuevo correo electronico");
+            switch(opcion){
+                case 1:
+                    System.out.println("Escriba su nuevo correo electronico");
+                    users.set(pos, this).setMail(alfanumerico.nextLine());
+                    break;
+                    }
+            default:
+                break;
+                }while (opcion != 0);        
+            
         }
         
-    }while (opcion != 0);
-    
-    }
 //Elimina a cualquier usuario de la lista, sin embargo, a veces tiene problemas en actualizar la lista si le pides imprimirla inmediatamente despues de eliminar un dato por alguna razon
     public boolean eliminarDatos(String rut){        
         for(int i = 0 ; i < users.size() ; i++){
@@ -289,6 +302,9 @@ public class Usuario {
     return false;
     }
 }
+    
+    
+
 
 
 

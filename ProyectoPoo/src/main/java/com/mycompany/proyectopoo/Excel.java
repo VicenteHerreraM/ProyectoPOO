@@ -4,12 +4,16 @@
  */
 package com.mycompany.proyectopoo;
 
-import au.com.bytecode.opencsv.CSVWriter; 
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 /**
  *
@@ -17,17 +21,39 @@ import java.util.ArrayList;
  */
 public class Excel {
     
+    private String Ubicacion;
+
+    public Excel(String ubicacion){
+        this.Ubicacion = Ubicacion;
+    }
     
-    
-    public void leerExcelClientes(){
-        Reader excel = Files.newBufferedReader("src\test\java\ArchivoDePrueba(1).xlsx");
+    public void Leer() throws CsvValidationException{
+        File file = new File(this.Ubicacion);
+        try {
+            FileReader inputfile = new FileReader("src/test/java/ArchivoDePrueba.csv");
+            CSVReader reader = new CSVReader(inputFile);
         
-        try{
+            String[] nextRecord;
             
-            FileReader 
+            int i=0;
+            while ((nextRecord = reader.readNext()) != null) {
+                
+                if(i>0)LUsuarios.add(new Usuario(nextRecord[0],nextRecord[1],nextRecord[2],Boolean.valueOf(nextRecord[3]),nextRecord[4]));
+                  
+                
+                for (String cell : nextRecord) {
+                    
+                    System.out.print(cell + "\t");
+                }
+                i++;
+                System.out.println();
+            }
+            
+        
+        }catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
         }
-        
-        
     }
     
     
