@@ -4,6 +4,8 @@
 
 package com.mycompany.proyectopoo;
 
+import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -21,8 +23,9 @@ import java.util.Scanner;
  */
 
 public class ProyectoPOO {
-
-    public static void main(String[] args) throws FileNotFoundException {
+    
+   
+    public static void main() throws CsvValidationException, FileNotFoundException {
         int opcion1;
         Usuario user=new Usuario();
         Scanner Entrada=new Scanner(System.in);
@@ -34,35 +37,45 @@ public class ProyectoPOO {
                 ------------------------
                 """);
         do{
-            System.out.println("¿QUE DESEA HACER?");
-            System.out.println("1- Crear Cuenta");
-            System.out.println("2- Imprimir");
-            System.out.println("3- Modificar");
-            System.out.println("4- Eliminar");
-            System.out.println("5- Agregar");
-            System.out.println("0- Salir del programa");
+            System.out.println("""
+                ¿QUE DESEA HACER?
+                1- Leer CSV
+                2- Imprimir
+                3- Modificar
+                4- Eliminar
+                5- Agregar
+                0- Salir del programa
+                """);
             opcion1=Entrada.nextInt();
 
             //CRUD
             switch(opcion1){
                 case 1:
-                    user.crearUsuario();
+                    user.leerUsuario();
                     break;
                 case 2:
                     user.imprimirDatos(user.getUsers());
                     break;
                 case 3:
-                    System.out.println("Escriba el rut para identificarlo");
-                    String rutPorBuscar = rut.nextLine();
-                    user.actualizarDatos(rutPorBuscar);
+                    System.out.print("Escriba el rut del usuario que desea modificar : ");
+                    user.actualizarDatos(rut.nextLine());
                     break;
                 case 4:
-                    System.out.println("Escriba el rut del usuario que desea eliminar");
-                    String rutUsuario = rut.nextLine();
-                    if(user.eliminarDatos(rutUsuario) == true){
-                        System.out.println("El usuario ha sido eliminado");
+                    System.out.print ("Escriba el rut del usuario que desea eliminar : ");
+                    if(user.eliminarDatos(rut.nextLine())){
+                        System.out.print("""
+                                        ------------------------
+                                        |  USUARIO ELIMINADO   |
+                                        ------------------------
+                                        """);
                     }else{
-                        System.out.println("No se ha encontrado el usuario, porfavor, verifique el rut");
+                        System.out.print("""
+                                        ------------------------------
+                                        |          ¡¡ERROR!!         |
+                                        | NO SE HA ENCONTRADO EL RUT |
+                                        |      INTENTE NUEVAMENTE    |
+                                        ------------------------------
+                                        """);
                     }
                     break;
                 case 5:

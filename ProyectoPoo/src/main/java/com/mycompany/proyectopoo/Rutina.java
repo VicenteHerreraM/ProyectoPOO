@@ -6,6 +6,41 @@ import java.util.List;
 public class Rutina{
     private String tipo;
     private List<String> rutinas;
+    private int idRutina;
+
+    public Rutina() {
+    }
+
+    public Rutina(String tipo, List<String> rutinas, int idRutina) {
+        this.tipo = tipo;
+        this.rutinas = rutinas;
+        this.idRutina = idRutina;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public List<String> getRutinas() {
+        return rutinas;
+    }
+
+    public int getIdRutina() {
+        return idRutina;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setRutinas(List<String> rutinas) {
+        this.rutinas = rutinas;
+    }
+
+    public void setIdRutina(int idRutina) {
+        this.idRutina = idRutina;
+    }
+
     public Rutina(String tipo) {
         this.tipo = tipo;
 

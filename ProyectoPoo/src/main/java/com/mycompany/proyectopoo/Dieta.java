@@ -6,6 +6,31 @@ import java.util.List;
 public class Dieta {
     private String tipo;
     private List<String> recetas;
+
+    public Dieta() {
+    }
+
+    public Dieta(String tipo, List<String> recetas) {
+        this.tipo = tipo;
+        this.recetas = recetas;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public List<String> getRecetas() {
+        return recetas;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setRecetas(List<String> recetas) {
+        this.recetas = recetas;
+    }
+
     public Dieta(String tipo) {
         this.tipo = tipo;
 

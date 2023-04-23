@@ -2,6 +2,11 @@
 package Vista;
 
 
+import com.mycompany.proyectopoo.ProyectoPOO;
+import com.opencsv.exceptions.CsvValidationException;
+
+import java.io.FileNotFoundException;
+
 public class Login extends javax.swing.JFrame {
 
     
@@ -165,25 +170,24 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         if(ingresoUsuario.getText().equals("usuario") && contrasenya.getText().equals("123")){
              System.out.println("Se ha logueado");
             //lblMensaje.setText("se ha logueado datos correctos");
-            
-            
             this.setVisible(false);
-           
-           
-            
+            ProyectoPOO inicio = new ProyectoPOO();
+            try {
+                inicio.main();
+            } catch (CsvValidationException | FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+
         }else{
             //System.out.println("Incorrecto los datos");
             Mensaje.setText("Datos incorrectos");
         }
-        
-        
-        
-        
     }
 
     private void ingresoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {

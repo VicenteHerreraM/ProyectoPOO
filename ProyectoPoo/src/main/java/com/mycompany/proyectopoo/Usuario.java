@@ -9,7 +9,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvValidationException;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -23,12 +29,10 @@ public class Usuario {
     private String mail, password, name, lastName, rut , typeDiet , typeRoutine;
     private float height , weight;
     private int age;
-    File fileName = new File("src/test/java/casosDePrueba.txt");
-    Scanner infoUser = new Scanner(fileName);                            //SCANNER
+    String fileName = ("src/test/java/usuarios.csv");
     public ArrayList<Usuario> users = new ArrayList<Usuario>();
 
-    public Usuario() throws FileNotFoundException{
-        this.infoUser = new Scanner(fileName);
+    public Usuario(){
     }
     public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, String typeDiet, String typeRoutine) throws FileNotFoundException {
         this.mail = mail;
@@ -160,28 +164,21 @@ public class Usuario {
 
     //Actualmente solo lee strings sin espacios
 
-    public void crearUsuario() {
-        try{
-        while(infoUser.hasNext()){
-            String[] part = infoUser.next().split(";");
-            String mailT = part[0];
-            String passwordT = part[1];
-            String nameT = part[2];
-            String lastNameT = part[3];
-            String rutT = part[4];
-            float heightT = Float.parseFloat(part[5]);
-            int ageT = Integer.parseInt(part[6]);
-            float weightT = Float.parseFloat(part[7]);
-            String typeDietT = part[8];
-            String typeRoutineT = part[9];
-
-            Usuario user = new Usuario(mailT,passwordT,nameT,lastNameT,rutT,heightT,ageT,weightT,typeDietT,typeRoutineT);
-            users.add(user);
-        }
-        infoUser.close();
-
-        }catch(Exception e){
-            System.out.println("No se han encontrado datos");
+    public void leerUsuario() throws CsvValidationException {
+        File file = new File(this.fileName);
+        try {
+            FileReader inputfile = new FileReader(file);
+            CSVReader reader = new CSVReader(inputfile);
+            String[] nextRecord;
+            int i=0;
+            while ((nextRecord = reader.readNext()) != null) {
+                if(i>0)
+                    users.add(new Usuario(nextRecord[0],nextRecord[1],nextRecord[2],nextRecord[3],nextRecord[4],Float.valueOf(nextRecord[5]),Integer.valueOf(nextRecord[6]),Float.valueOf(nextRecord[7]),nextRecord[8], nextRecord[9]));
+                i++;
+            }
+        }catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
     
@@ -228,8 +225,27 @@ public class Usuario {
         users.add(new Usuario(mail , password, name , lastName , rut , height , age , weight , typeDiet , typeRoutine));
         
     }
-    
-    
+
+    public int obtenerPosicionUsuario(String rut){
+        for (int i = 0 ; i < users.size() ; i++){
+            if(rut.equals(users.get(i).rut)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public boolean verificarUsuario(String rut){
+        for (int i = 0 ; i < users.size() ; i++){
+            if(rut.equals(users.get(i).rut)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     public void imprimirDatos(ArrayList<Usuario> users){
         int i=1;
         for (Usuario user : users) {
@@ -248,50 +264,85 @@ public class Usuario {
             i++;
         }
     }
-    
-    public int obtenerPosicionUsuario(String rut){
-        for (int i = 0 ; i < users.size() ; i++){
-            if(rut.equals(users.get(i).rut)){
-                return i;
+
+
+    //Se queda en bucle si accede al menu y no es posible salir de este amenos que se fuerze el cierre
+
+    public void actualizarDatos(String rut){
+
+        Scanner opciones = new Scanner(System.in);
+        Scanner entrada = new Scanner(System.in);
+        int opcion;
+
+        for(Usuario user: users){
+            if(user.getRut().equals(rut)){
+                do{
+                    System.out.print("""
+                                        ------------------------------
+                                        |          ¡¡ERROR!!         |
+                                        | HA INGRESADO UN OPCIÓN NO  |
+                                        |            VÁLIDA          |
+                                        ------------------------------
+                                        """);
+                    System.out.println("¿Que dato desea modificar?");
+                    System.out.println("1- Correo electronico");
+                    System.out.println("2- Contraseña");
+                    System.out.println("3- Edad");
+                    System.out.println("4- Peso");
+                    System.out.println("5- Altura");
+                    System.out.println("0- Volver al menu anterior");
+                    opcion = opciones.nextInt();
+
+                    switch(opcion){
+                        case 1:
+                            System.out.print("Nuevo correo electronico : ");
+                            user.setMail(entrada.nextLine());
+                            break;
+                        case 2:
+                            System.out.print("Nueva contraseña : ");
+                            user.setPassword(entrada.nextLine());
+                            break;
+                        case 3:
+                            System.out.print("Nueva edad : ");
+                            user.setAge(entrada.nextInt());
+                            break;
+                        case 4:
+                            System.out.print("Nuevo Peso : ");
+                            user.setWeight(entrada.nextFloat());
+                            break;
+                        case 5:
+                            System.out.print("Nueva altura: ");
+                            user.setHeight(entrada.nextFloat());
+                            break;
+                        default:
+                            System.out.print("""
+                                        ------------------------------
+                                        |          ¡¡ERROR!!         |
+                                        | HA INGRESADO UN OPCIÓN NO  |
+                                        |            VÁLIDA          |
+                                        ------------------------------
+                                        """);
+                            break;
+
+                    }
+                    do{
+                        System.out.print("""
+                                       ¿DESEA HACER ALGO MÁS?
+                                       
+                                       1- SI
+                                       0- NO
+                                        """);
+                        opcion=entrada.nextInt();
+                    }while(opcion>1||opcion<0);
+                }while (opcion != 0);
             }
         }
-       return 0;     
-    }
-    
-    //Entra en bucle si logra accedar al menu mostrado.
-    //falta terminar esta funcion.
-    public void actualizarDatos(String rut){
-        
-        Scanner opciones = new Scanner(System.in);
-        Scanner alfanumerico = new Scanner(System.in);
-        Scanner numDecimal = new Scanner(System.in);
-        Scanner numEnteros = new Scanner(System.in);
-        int opcion = opciones.nextInt();
-        
-        int pos = obtenerPosicionUsuario(rut);
-            do{
-                System.out.println("¿Que dato desea modificar?");
-                System.out.println("1- Correo electronico");
-                System.out.println("2- Contraseña");
-                System.out.println("3- Edad");
-                System.out.println("4- Peso");
-                System.out.println("5- Altura");
-                System.out.println(pos);
-                
 
-            switch(opcion){
-                case 1:
-                    System.out.println("Escriba su nuevo correo electronico");
-                    users.set(pos, this).setMail(alfanumerico.nextLine());
-                    break;
-                    }
-            default:
-                break;
-                }while (opcion != 0);        
-            
-        }
-        
-//Elimina a cualquier usuario de la lista, sin embargo, a veces tiene problemas en actualizar la lista si le pides imprimirla inmediatamente despues de eliminar un dato por alguna razon
+
+
+    }
+
+    //Elimina a cualquier usuario de la lista, sin embargo, a veces tiene problemas en actualizar la lista si le pides imprimirla inmediatamente despues de eliminar un dato por alguna razon
     public boolean eliminarDatos(String rut){        
         for(int i = 0 ; i < users.size() ; i++){
             if(rut.equals(users.get(i).rut)){
@@ -302,9 +353,6 @@ public class Usuario {
     return false;
     }
 }
-    
-    
-
 
 
 
