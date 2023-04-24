@@ -182,49 +182,61 @@ public class Usuario {
             e.printStackTrace();
         }
     }
-    
-    
-    //Agrega al usuario exitosamente a la lista,sin embargo, por alguna razon se salta la linea para registrar la dieta
-    
+
     public void agregarUsuario() throws FileNotFoundException {
-	String mail, password, name, lastName, rut , typeDiet , typeRoutine;
+	String mail, password, name, lastName, rut , typeDiet, typeRoutine;
 	float height , weight; 
 	int age;
+    Usuario user = new Usuario();
 
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("Ingrese su correo electronico");
+        System.out.println("Ingrese su correo electronico: ");
         mail = entrada.nextLine();
-        
-        System.out.println("Ingrese contraseña");
-        password = entrada.nextLine();
-        
-        System.out.println("Ingrese Nombre");
-        name = entrada.nextLine();
-        
-        System.out.println("Ingrese Apellido");
-        lastName = entrada.nextLine();
-        
-        System.out.println("Ingrese Rut");
-        rut = entrada.nextLine();
-        
-        System.out.println("Ingrese Altura");
-        height = entrada.nextFloat();
+        if(user.verificarMail(mail)){
+            System.out.print("\nIngrese contraseña :");
+            password = entrada.nextLine();
 
-        System.out.println("Ingrese Peso");
-        weight = entrada.nextFloat();
+            System.out.print("\nIngrese Nombre :");
+            name = entrada.nextLine();
 
-        System.out.println("Ingrese Edad");
-        age = entrada.nextInt();
+            System.out.println("\nIngrese Apellido :");
+            lastName = entrada.nextLine();
 
-        System.out.println("Ingrese Tipo de dieta");
-        typeDiet = entrada.nextLine(); //Por alguna razon, esta es la linea de codigo la ingresa vacia
+            System.out.println("\nIngrese Rut :");
+            rut = entrada.nextLine();
+
+            System.out.println("\nIngrese Altura :");
+            height = entrada.nextFloat();
+
+            System.out.println("\nIngrese Peso :");
+            weight = entrada.nextFloat();
+
+            System.out.println("\nIngrese Edad :");
+            age = entrada.nextInt();
+
+            System.out.print("\nIngrese Tipo de dieta :");
+            typeDiet = entrada.next();
+
+            System.out.print("\nIngrese Tipo de rutina :");
+            typeRoutine = entrada.next();
+
+            users.add(new Usuario(mail , password, name , lastName , rut , height , age , weight , typeDiet , typeRoutine));
+            System.out.print("""
+                            ------------------------------
+                            |   AGREGADO CORRECTAMENTE!! |
+                            ------------------------------
+                            """);
+        }else{
+            System.out.print("""
+                            ------------------------------
+                            |   ¡¡ CORREO NO VÁLIDO !!   |
+                            |      INTENTE MÁS TARDE     |
+                            ------------------------------
+                            """);
+        }
         
-        System.out.println("Ingrese Tipo de rutina");
-        typeRoutine = entrada.nextLine();
-        
-        users.add(new Usuario(mail , password, name , lastName , rut , height , age , weight , typeDiet , typeRoutine));
-        
+
     }
 
 
@@ -262,9 +274,11 @@ public class Usuario {
         Scanner opciones = new Scanner(System.in);
         Scanner entrada = new Scanner(System.in);
         int opcion;
+        boolean flag = false;
 
         for(Usuario user: users){
             if(user.getRut().equals(rut)){
+                flag = true;
                 do{
                     System.out.println("¿Que dato desea modificar?");
                     System.out.println("1- Correo electronico");
@@ -310,7 +324,7 @@ public class Usuario {
                     do{
                         System.out.print("""
                                        ¿DESEA HACER ALGO MÁS?
-                                       
+                                        
                                        1- SI
                                        0- NO
                                         """);
@@ -319,7 +333,14 @@ public class Usuario {
                 }while (opcion != 0);
             }
         }
-
+        if(!flag){
+            System.out.print("""
+                                        ------------------------------
+                                        |          ¡¡ERROR!!         |
+                                        |     RUT NO ENCONTRADO      |
+                                        ------------------------------
+                                        """);
+        }
 
 
     }

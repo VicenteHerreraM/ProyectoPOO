@@ -4,6 +4,8 @@ package Vista;
 
 import com.mycompany.proyectopoo.ProyectoPOO;
 import com.opencsv.exceptions.CsvValidationException;
+
+import java.awt.*;
 import java.io.FileNotFoundException;
 
 public class Login extends javax.swing.JFrame {
@@ -189,8 +191,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if(ingresoUsuario.getText().equals("usuario") && contrasenya.getText().equals("123")){
-             System.out.println("Se ha logueado");
-            //lblMensaje.setText("se ha logueado datos correctos");
+            System.out.println("SE HA LOGEADO CORRECTAMENTE");
             this.setVisible(false);
             ProyectoPOO inicio = new ProyectoPOO();
             try {
@@ -201,8 +202,7 @@ public class Login extends javax.swing.JFrame {
 
 
         }else{
-            //System.out.println("Incorrecto los datos");
-            Mensaje.setText("Datos incorrectos");
+            Mensaje.setText("¡¡DATOS INCORRECTOS!!");
         }
     }
 

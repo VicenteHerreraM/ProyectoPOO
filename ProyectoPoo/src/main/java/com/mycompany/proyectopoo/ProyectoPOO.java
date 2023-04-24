@@ -73,7 +73,7 @@ public class ProyectoPOO {
                                         ------------------------------
                                         |          ¡¡ERROR!!         |
                                         | NO SE HA ENCONTRADO EL RUT |
-                                        |      INTENTE NUEVAMENTE    |
+                                        |      INTENTE MÁS TARDE     |
                                         ------------------------------
                                         """);
                     }
