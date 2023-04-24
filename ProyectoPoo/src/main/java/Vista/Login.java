@@ -4,7 +4,6 @@ package Vista;
 
 import com.mycompany.proyectopoo.ProyectoPOO;
 import com.opencsv.exceptions.CsvValidationException;
-
 import java.io.FileNotFoundException;
 
 public class Login extends javax.swing.JFrame {
@@ -12,7 +11,23 @@ public class Login extends javax.swing.JFrame {
     
     
     public Login() {
-        initComponents();
+        System.out.println("Usuario: usuario\nContraseña: 123");
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    // Espera 5 segundos
+                    System.out.println("\nLa interfaz se ejecutará después de 5 segundos");
+                    Thread.sleep(5000);
+                    initComponents();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        timer.start();
+
+
     }
 
     
@@ -172,6 +187,7 @@ public class Login extends javax.swing.JFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+
         if(ingresoUsuario.getText().equals("usuario") && contrasenya.getText().equals("123")){
              System.out.println("Se ha logueado");
             //lblMensaje.setText("se ha logueado datos correctos");

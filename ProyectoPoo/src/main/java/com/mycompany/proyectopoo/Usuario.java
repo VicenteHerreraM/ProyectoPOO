@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectopoo;
 
+import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
@@ -226,30 +227,18 @@ public class Usuario {
         
     }
 
-    public int obtenerPosicionUsuario(String rut){
-        for (int i = 0 ; i < users.size() ; i++){
-            if(rut.equals(users.get(i).rut)){
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    public boolean verificarUsuario(String rut){
-        for (int i = 0 ; i < users.size() ; i++){
-            if(rut.equals(users.get(i).rut)){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
 
     public void imprimirDatos(ArrayList<Usuario> users){
         int i=1;
+        Dieta dieta;
+        Rutina rutina;
         for (Usuario user : users) {
-            System.out.println("\n------------------------------------------\n"
+            List<String>receta=new ArrayList<>();
+            List<String>rutine=new ArrayList<>();
+            int id = 0;
+            dieta = new Dieta(user.getTypeDiet(), receta);
+            rutina = new Rutina(user.getTypeRoutine(),rutine,id);
+            System.out.println("------------------------------------------\n"
                               +"Usuario N "+i+"\n"
                               +"Nombre: "+ user.getName()+" "+user.getLastName()+"\n"
                               +"Mail: "+ user.getMail()+"\n"
@@ -258,15 +247,15 @@ public class Usuario {
                               +"Edad: "+ user.getAge()+"\n"
                               +"Altura: "+ user.getHeight()+"\n"
                               +"Peso: "+ user.getWeight()+"\n"
-                              +"Dieta: "+ user.getTypeDiet()+"\n"
-                              +"Rutina: "+ user.getTypeRoutine()+"\n"
-                              +"------------------------------------------\n");
+                              +"Dieta: "+ user.getTypeDiet());
+            dieta.imprimirRecetas();
+            System.out.print("\nRutina: "+ user.getTypeRoutine()+"\n");
+            rutina.imprimirRutina();
+            System.out.println("------------------------------------------");
             i++;
         }
     }
 
-
-    //Se queda en bucle si accede al menu y no es posible salir de este amenos que se fuerze el cierre
 
     public void actualizarDatos(String rut){
 
@@ -277,13 +266,6 @@ public class Usuario {
         for(Usuario user: users){
             if(user.getRut().equals(rut)){
                 do{
-                    System.out.print("""
-                                        ------------------------------
-                                        |          ¡¡ERROR!!         |
-                                        | HA INGRESADO UN OPCIÓN NO  |
-                                        |            VÁLIDA          |
-                                        ------------------------------
-                                        """);
                     System.out.println("¿Que dato desea modificar?");
                     System.out.println("1- Correo electronico");
                     System.out.println("2- Contraseña");
@@ -342,7 +324,7 @@ public class Usuario {
 
     }
 
-    //Elimina a cualquier usuario de la lista, sin embargo, a veces tiene problemas en actualizar la lista si le pides imprimirla inmediatamente despues de eliminar un dato por alguna razon
+
     public boolean eliminarDatos(String rut){        
         for(int i = 0 ; i < users.size() ; i++){
             if(rut.equals(users.get(i).rut)){

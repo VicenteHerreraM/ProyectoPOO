@@ -11,12 +11,6 @@ public class Rutina{
     public Rutina() {
     }
 
-    public Rutina(String tipo, List<String> rutinas, int idRutina) {
-        this.tipo = tipo;
-        this.rutinas = rutinas;
-        this.idRutina = idRutina;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -41,29 +35,39 @@ public class Rutina{
         this.idRutina = idRutina;
     }
 
-    public Rutina(String tipo) {
+    public Rutina(String tipo, List<String> rutinas, int idRutina) {
         this.tipo = tipo;
 
         switch (tipo) {
             case "Full Body":
-                this.rutinas = Arrays.asList("Se entrena todo el cuerpo, 3 veces a la semana, con un maximo de 2 ejercicios por grupo muscular");
+                this.rutinas = Arrays.asList("Sentadilla 15x3", "Press de banca 12x4","Crunch 20x5");
+                this.idRutina = 1;
                 break;
             case "Empuje jalon":
-                this.rutinas = Arrays.asList("Se entrena 4 o 5 veces a la semana, un dia se centra en los ejercicios de empuje y otro dia se centra en los ejercicios de tiron");
+                this.rutinas = Arrays.asList("Press de banca 12x4", "Paralelas 10x3","Aperturas con polea 8x5");
+                this.idRutina = 2;
                 break;
             case "Torso Pierna":
-                this.rutinas = Arrays.asList("Se entrena 4 veces a la semana, 2 dias el tren superior y 2 dias el tren inferior");
+                this.rutinas = Arrays.asList("Sentadillas 15x5","Crunch 20x5","Zancadas 20x4");
+                this.idRutina = 3;
                 break;
             case "HITT":
-                this.rutinas = Arrays.asList("Entrenamientos intensos y cortos (20mins), dando el 100%");
+                this.rutinas = Arrays.asList("Burpee 2 min","Sentadilla 1 min 30 sec","Crunch 2 min 30 sec");
+                this.idRutina = 4;
                 break;
             case "Cardio":
-                this.rutinas = Arrays.asList("");
+                this.rutinas = Arrays.asList("Sentadilla 15x3","Burpee 15x4","Bicicleta Estática 10 min");
+                this.idRutina = 5;
                 break;
             default:
-                this.rutinas = Arrays.asList("");
+                this.rutinas = Arrays.asList("Flexiones 15x4","Sentadillas 20x5","Plancha 1 min","");
+                this.idRutina = 6;
                 break;
         }
+    }
+    public void imprimirRutina(){
+        rutinas.forEach(rutina -> System.out.println( "\t\t- " + rutina));
+
     }
 
 

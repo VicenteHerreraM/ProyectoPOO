@@ -10,11 +10,6 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(String tipo, List<String> recetas) {
-        this.tipo = tipo;
-        this.recetas = recetas;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -31,7 +26,7 @@ public class Dieta {
         this.recetas = recetas;
     }
 
-    public Dieta(String tipo) {
+    public Dieta(String tipo,List<String> recetas) {
         this.tipo = tipo;
 
         switch (tipo) {
@@ -60,5 +55,9 @@ public class Dieta {
                 this.recetas = Arrays.asList("Pan con queso","Fiedos con salsa de tomate y carne molida");
                 break;
         }
+    }
+    public void imprimirRecetas(){
+        recetas.forEach(receta -> System.out.println( "\t\t- " + receta));
+
     }
 }
