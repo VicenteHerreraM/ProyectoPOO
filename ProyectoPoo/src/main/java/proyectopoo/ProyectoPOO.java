@@ -4,7 +4,6 @@
 
 package proyectopoo;
 
-import com.opencsv.exceptions.CsvValidationException;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -25,7 +24,7 @@ import java.util.Scanner;
 public class ProyectoPOO {
     
    
-    public static void main() throws CsvValidationException, FileNotFoundException {
+    public static void main() throws  FileNotFoundException {
         int opcion1;
         Usuario user=new Usuario();
         Scanner Entrada=new Scanner(System.in);
