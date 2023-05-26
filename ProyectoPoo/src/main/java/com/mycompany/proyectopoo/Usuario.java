@@ -176,7 +176,9 @@ public class Usuario {
                     case 2->usuario.actualizarDatos();
                     case 3->usuario.eliminarDatos();
                     case 4->usuario.imprimirDatos();
-                    case 0->{};
+                    case 0->{
+
+                    };
                     default -> System.out.print("""
                                         ------------------------------
                                         |          ¡¡ERROR!!         |
