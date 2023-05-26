@@ -2,10 +2,9 @@
 package Vista;
 
 
-import com.mycompany.proyectopoo.ProyectoPOO;
+import proyectopoo.ProyectoPOO;
 import com.opencsv.exceptions.CsvValidationException;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 
 public class Login extends javax.swing.JFrame {

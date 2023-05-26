@@ -1,4 +1,4 @@
-package com.mycompany.proyectopoo;
+package proyectopoo;
 
 import java.util.Arrays;
 import java.util.List;

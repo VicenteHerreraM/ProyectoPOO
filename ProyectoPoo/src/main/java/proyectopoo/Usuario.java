@@ -2,21 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.proyectopoo;
+package proyectopoo;
 
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
-import java.io.File;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
-
 import Operaciones.Validacion;
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
-
-import java.io.FileReader;
-import java.io.IOException;
 
 /**
  *
@@ -29,10 +22,8 @@ public class Usuario {
      * */
     private String mail, password, name, lastName, rut;
     private float height , weight;
-    private int age;
-    String fileName = ("src/test/java/usuarios.csv");
-    private Dieta typeDiet;
-    private Rutina typeRoutine;
+    private int age, typeDiet, typeRoutine;
+
     private Hashtable<Integer, Usuario> users = new Hashtable<Integer,Usuario>();
 
     Usuario usuario;
@@ -43,7 +34,7 @@ public class Usuario {
 
     public Usuario(){
     }
-    public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, Dieta typeDiet, Rutina typeRoutine) throws FileNotFoundException {
+    public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, int typeDiet, int typeRoutine) throws FileNotFoundException {
         this.mail = mail;
         this.password = password;
         this.name = name;
@@ -81,11 +72,11 @@ public class Usuario {
         return rut;
     }
 
-    public Dieta getTypeDiet() {
+    public int getTypeDiet() {
         return typeDiet;
     }
 
-    public Rutina getTypeRoutine() {
+    public int getTypeRoutine() {
         return typeRoutine;
     }
 
@@ -129,11 +120,11 @@ public class Usuario {
         this.rut = rut;
     }
 
-    public void setTypeDiet(Dieta typeDiet) {
+    public void setTypeDiet(int typeDiet) {
         this.typeDiet = typeDiet;
     }
 
-    public void setTypeRoutine(Rutina typeRoutine) {
+    public void setTypeRoutine(int typeRoutine) {
         this.typeRoutine = typeRoutine;
     }
 
@@ -173,8 +164,8 @@ public class Usuario {
                 opcion= validar.ValidarEntero();
                 switch (opcion){
                     case 1->usuario.agregarUsuario();
-                    case 2->usuario.actualizarDatos();
-                    case 3->usuario.eliminarDatos();
+                    case 2->usuario.actualizarDatos( getRut());
+                    case 3->usuario.eliminarDatos(getRut());
                     case 4->usuario.imprimirDatos();
                     case 0->{
 
@@ -196,29 +187,15 @@ public class Usuario {
 
     //Actualmente solo lee strings sin espacios
 
-    public void leerUsuario() throws CsvValidationException {
-        File file = new File(this.fileName);
-        try {
-            FileReader inputfile = new FileReader(file);
-            CSVReader reader = new CSVReader(inputfile);
-            String[] nextRecord;
-            int i=0;
-            while ((nextRecord = reader.readNext()) != null) {
-                if(i>0)
-                    users.put(nextRecord[2],new Usuario(nextRecord[0],nextRecord[1],nextRecord[2],nextRecord[3],nextRecord[4],Float.valueOf(nextRecord[5]),Integer.valueOf(nextRecord[6]),Float.valueOf(nextRecord[7]),nextRecord[8], nextRecord[9]));
-                i++;
-            }
-        }catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void leerUsuario(){
+
     }
 
     public void agregarUsuario() throws FileNotFoundException {
-        String mail, password, name, lastName, rut , typeDiet, typeRoutine;
+        String mail, password, name, lastName, rut;
         float height , weight;
-        int age;
-    Usuario user = new Usuario();
+        int age, typeDiet, typeRoutine;
+        Usuario user = new Usuario();
 
         Scanner entrada = new Scanner(System.in);
         
