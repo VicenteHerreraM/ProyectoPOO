@@ -5,7 +5,7 @@
 package Vista;
 
 import Operaciones.dbConection;
-import Operaciones.Usuario;
+import proyectopoo.Usuario;
 import java.sql.Connection;
 
 /**
@@ -102,6 +102,7 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //consulta
+        /*
         Conexion conexion=new Conexion();
         Connection link=conexion.Conectar();
         Usuario usuario=new Usuario();
@@ -119,7 +120,7 @@ public class InicioSesion extends javax.swing.JFrame {
         
         
         
-        /*if(txtUsuario.getText().equals("pepito") && txtClave.getText().equals("123")){
+        if(txtUsuario.getText().equals("pepito") && txtClave.getText().equals("123")){
             Principal ventana=new Principal();
             ventana.setVisible(true);
             this.setVisible(false);
