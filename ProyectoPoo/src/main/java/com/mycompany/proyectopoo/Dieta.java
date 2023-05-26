@@ -45,7 +45,7 @@ public class Dieta {
             case "Baja en grasas":
                 this.recetas = Arrays.asList("Salmon al horno con arroz integral", "Tortilla de huevo con espinacas, cebolla y pimiento");
                 break;
-            case "Cetogenica":
+            case "Cetogénica":
                 this.recetas = Arrays.asList("Huevos revueltos con aguacate y tocino", "Hamburguesa con queso cheddar, lechuga y aguacate");
                 break;
             case "Paleo":

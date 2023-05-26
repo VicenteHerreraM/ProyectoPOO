@@ -4,18 +4,18 @@
  */
 package com.mycompany.proyectopoo;
 
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
+
+import Operaciones.Validacion;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
-import java.io.File;
+
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -27,15 +27,23 @@ public class Usuario {
     /**
      *  ATRIBUTOS
      * */
-    private String mail, password, name, lastName, rut , typeDiet , typeRoutine;
+    private String mail, password, name, lastName, rut;
     private float height , weight;
     private int age;
     String fileName = ("src/test/java/usuarios.csv");
-    public ArrayList<Usuario> users = new ArrayList<Usuario>();
+    private Dieta typeDiet;
+    private Rutina typeRoutine;
+    private Hashtable<Integer, Usuario> users = new Hashtable<Integer,Usuario>();
+
+    Usuario usuario;
+
+    Validacion validar = new Validacion();
+
+    Scanner entrada = new Scanner(System.in);
 
     public Usuario(){
     }
-    public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, String typeDiet, String typeRoutine) throws FileNotFoundException {
+    public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, Dieta typeDiet, Rutina typeRoutine) throws FileNotFoundException {
         this.mail = mail;
         this.password = password;
         this.name = name;
@@ -73,11 +81,11 @@ public class Usuario {
         return rut;
     }
 
-    public String getTypeDiet() {
+    public Dieta getTypeDiet() {
         return typeDiet;
     }
 
-    public String getTypeRoutine() {
+    public Rutina getTypeRoutine() {
         return typeRoutine;
     }
 
@@ -93,7 +101,7 @@ public class Usuario {
         return age;
     }
 
-    public ArrayList<Usuario> getUsers() {
+    public Hashtable<Integer,Usuario> getUsers() {
         return users;
     }
 
@@ -121,11 +129,11 @@ public class Usuario {
         this.rut = rut;
     }
 
-    public void setTypeDiet(String typeDiet) {
+    public void setTypeDiet(Dieta typeDiet) {
         this.typeDiet = typeDiet;
     }
 
-    public void setTypeRoutine(String typeRoutine) {
+    public void setTypeRoutine(Rutina typeRoutine) {
         this.typeRoutine = typeRoutine;
     }
 
@@ -141,22 +149,43 @@ public class Usuario {
         this.age = age;
     }
 
-    public void setUsers(ArrayList<Usuario> users) {
+    public void setUsers(Hashtable<Integer, Usuario> users) {
         this.users = users;
     }
 
     /**
-     *  F(X) Verificar MAIL
+     *
+     *      VOID MENÚ USUARIO
+     *
      * */
-    public boolean verificarMail(String mail) {
-        char arroba = '@';
-        for (int i = 0; i < mail.length(); i++) {
-            if (mail.charAt(i) == arroba) {
-                return true;
-            }
 
-        }
-        return false;
+    public void options() throws FileNotFoundException {
+        int opcion;
+            do{
+                System.out.print("""
+                                    ¿QUE DESEA HACER EN USUARIO?
+                                    1.- CREAR
+                                    2.- MODIFICAR
+                                    3.- ELIMINAR
+                                    4.- MOSTRAR
+                                    0.- RETROCEDER
+                                """);
+                opcion= validar.ValidarEntero();
+                switch (opcion){
+                    case 1->usuario.agregarUsuario();
+                    case 2->usuario.actualizarDatos();
+                    case 3->usuario.eliminarDatos();
+                    case 4->usuario.imprimirDatos();
+                    case 0->{};
+                    default -> System.out.print("""
+                                        ------------------------------
+                                        |          ¡¡ERROR!!         |
+                                        | HA INGRESADO UN OPCIÓN NO  |
+                                        |            VÁLIDA          |
+                                        ------------------------------
+                                        """);
+                }
+            }while (opcion!=0);
     }
 
     /**
@@ -174,7 +203,7 @@ public class Usuario {
             int i=0;
             while ((nextRecord = reader.readNext()) != null) {
                 if(i>0)
-                    users.add(new Usuario(nextRecord[0],nextRecord[1],nextRecord[2],nextRecord[3],nextRecord[4],Float.valueOf(nextRecord[5]),Integer.valueOf(nextRecord[6]),Float.valueOf(nextRecord[7]),nextRecord[8], nextRecord[9]));
+                    users.put(nextRecord[2],new Usuario(nextRecord[0],nextRecord[1],nextRecord[2],nextRecord[3],nextRecord[4],Float.valueOf(nextRecord[5]),Integer.valueOf(nextRecord[6]),Float.valueOf(nextRecord[7]),nextRecord[8], nextRecord[9]));
                 i++;
             }
         }catch (IOException e) {
@@ -184,9 +213,9 @@ public class Usuario {
     }
 
     public void agregarUsuario() throws FileNotFoundException {
-	String mail, password, name, lastName, rut , typeDiet, typeRoutine;
-	float height , weight; 
-	int age;
+        String mail, password, name, lastName, rut , typeDiet, typeRoutine;
+        float height , weight;
+        int age;
     Usuario user = new Usuario();
 
         Scanner entrada = new Scanner(System.in);
@@ -240,7 +269,7 @@ public class Usuario {
     }
 
 
-    public void imprimirDatos(ArrayList<Usuario> users){
+    public void imprimirDatos(){
         int i=1;
         Dieta dieta;
         Rutina rutina;

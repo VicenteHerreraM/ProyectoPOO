@@ -39,12 +39,11 @@ public class ProyectoPOO {
         do{
             System.out.println("""
                 ¿QUE DESEA HACER?
-                1- Leer CSV
-                2- Imprimir
-                3- Modificar
-                4- Eliminar
-                5- Agregar
-                0- Salir del programa
+                1- LEER CSV USUARIOS
+                2- USUARIO
+                3- DIETA
+                4- RUTINA
+                0- SALIR DEL PROGRAMA
                 """);
             opcion1=Entrada.nextInt();
 
@@ -54,7 +53,7 @@ public class ProyectoPOO {
                     user.leerUsuario();
                     break;
                 case 2:
-                    user.imprimirDatos(user.getUsers());
+                    user.options();
                     break;
                 case 3:
                     System.out.print("Escriba el rut del usuario que desea modificar : ");
