@@ -2,19 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyectopoo;
+package Modelos;
 
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 import Operaciones.Validacion;
 
-/**
- *
- * @author vice
- */
 public class Usuario {
 
     /**
@@ -22,9 +17,9 @@ public class Usuario {
      * */
     private String mail, password, name, lastName, rut;
     private float height , weight;
-    private int age, typeDiet, typeRoutine;
-
-    private Hashtable<Integer, Usuario> users = new Hashtable<Integer,Usuario>();
+    private int typeDiet, typeRoutine;
+    private Date birthdate;
+    private ArrayList<Usuario> users = new ArrayList<>();
 
     Usuario usuario;
 
@@ -33,20 +28,21 @@ public class Usuario {
     Scanner entrada = new Scanner(System.in);
 
     public Usuario(){
+
     }
-    public Usuario(String mail, String password, String name, String lastName, String rut, float height, int age, float weight, int typeDiet, int typeRoutine) throws FileNotFoundException {
+
+    public Usuario(String mail, String password, String name, String lastName, String rut, float height, float weight, int typeDiet, int typeRoutine, Date birthdate) {
         this.mail = mail;
         this.password = password;
         this.name = name;
         this.lastName = lastName;
         this.rut = rut;
         this.height = height;
-        this.age = age;
         this.weight = weight;
         this.typeDiet = typeDiet;
         this.typeRoutine = typeRoutine;
+        this.birthdate = birthdate;
     }
-
 
     /************
      *   GET    *
@@ -88,11 +84,11 @@ public class Usuario {
         return weight;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public Hashtable<Integer,Usuario> getUsers() {
+    public ArrayList<Usuario> getUsers() {
         return users;
     }
 
@@ -136,11 +132,11 @@ public class Usuario {
         this.weight = weight;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
-    public void setUsers(Hashtable<Integer, Usuario> users) {
+    public void setUsers(ArrayList<Usuario> users) {
         this.users = users;
     }
 

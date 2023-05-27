@@ -5,6 +5,8 @@
 package proyectopoo;
 
 
+import Modelos.Usuario;
+
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 

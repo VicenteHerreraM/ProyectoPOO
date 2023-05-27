@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/Controladores/DietToDB.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Controladores/RoutineToDB.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Controladores/UserToDB.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/test/java/cboom.sql" dialect="MariaDB" />
   </component>
 </project>
