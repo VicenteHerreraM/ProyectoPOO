@@ -4,17 +4,20 @@
  */
 package Vista;
 
+import Operaciones.dbConection;
+import proyectopoo.Usuario;
+import java.sql.Connection;
 
 /**
  *
  * @author sandracano
  */
-public class LoginUser extends javax.swing.JFrame {
+public class InicioSesion extends javax.swing.JFrame {
 
     /**
      * Creates new form InicioSesion
      */
-    public LoginUser() {
+    public InicioSesion() {
         initComponents();
         //conectarnos a DB
 
@@ -99,10 +102,25 @@ public class LoginUser extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //consulta
+        /*
+        Conexion conexion=new Conexion();
+        Connection link=conexion.Conectar();
+        Usuario usuario=new Usuario();
+        if(usuario.Leer(link, txtUsuario.getText(), txtClave.getText())){
+            conexion.CerrarConexion();
+            Principal ventana=new Principal();
+            ventana.setVisible(true);
+            this.setVisible(false);
+            setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        }else{
+            lblMensaje.setText("Usuario o pasword incorrectos");
+            conexion.CerrarConexion();
+        }
         
         
         
-        /*if(txtUsuario.getText().equals("pepito") && txtClave.getText().equals("123")){
+        
+        if(txtUsuario.getText().equals("pepito") && txtClave.getText().equals("123")){
             Principal ventana=new Principal();
             ventana.setVisible(true);
             this.setVisible(false);
@@ -137,20 +155,20 @@ public class LoginUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InicioSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginUser().setVisible(true);
+                new InicioSesion().setVisible(true);
             }
         });
     }
