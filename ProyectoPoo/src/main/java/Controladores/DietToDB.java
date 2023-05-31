@@ -31,25 +31,34 @@ public class DietToDB implements DietDB {
         }
         return false;
     }
-
-    @Override
-    public void UpdateDiet(Connection link, int searchID) {
-        int id;
-
+    
+    @Override    
+    public void UpdateDiet(Connection link ,int searchID , Diet dieta) {
         try{
             Gson gson = new Gson();
-            String json = gson.toJson()
-        }catch(SQLException sqlExcept){
+            String json = gson.toJson(dieta.getTypeRoutine());
+            PreparedStatement ps = link.prepareStatement("UPDATE dieta SET (Nombre=?, Comida=?) WHERE seachID = ? ");
+            ps.setString(1, dieta.getNameRoutines());
+            ps.setString(2, json);
+            ps.setInt(3, searchID ); //Quizas esta linea esta demás.
+            ps.execute();
+        }catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
         }
     }
 
     @Override
-    public void DeleteDiet(Connection link) {
-
-
+    public void DeleteDiet(Connection link ,Diet dieta , int idDelete) {
+        try{
+            PreparedStatement ps = link.prepareStatement("DELETE FROM dieta WHERE seachID = ? ");
+            ps.setInt(1, idDelete );
+            ps.execute();
+        }catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
     }
 
+    
     @Override
     public ArrayList<Diet> ReadDiets(Connection link) {
         Diet diet=new Diet();
@@ -112,4 +121,6 @@ public class DietToDB implements DietDB {
 
         return null;
     }
+
+
 }

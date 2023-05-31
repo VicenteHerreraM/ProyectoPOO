@@ -37,13 +37,36 @@ public class UserToDB implements UsuarioDB{
     }
 
     @Override
-    public void UpdateUser() {
+    public void UpdateUser(Connection link, Usuario user , String rutUpdate) {
+        try{
+            PreparedStatement ps = link.prepareStatement("UPDATE cliente SET(RUT = ?,Nombre = ?,Apellido = ?,Altura = ?,Peso = ?,Contraseña = ?,Correo = ?,FechaNac = ?,dietaCliente = ?,rutinaCliente = ?) WHERE rutUpdate = ?");
+            ps.setString(1, user.getRut());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getLastName());
+            ps.setFloat(4, user.getHeight());
+            ps.setFloat(5, user.getWeight());
+            ps.setString(6, user.getPassword());
+            ps.setString(7,  user.getMail());
+            ps.setDate(8, (Date) user.getBirthdate());
+            ps.setInt(9, user.getTypeDiet());
+            ps.setInt(10, user.getTypeRoutine());
+            ps.execute();
 
+        }catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
     }
 
     @Override
-    public void DeleteUser() {
+    public void DeleteUser(Connection link, Usuario user , String rutDelete) {
+        try{
+            PreparedStatement ps = link.prepareStatement("DELETE cliente FROM rutDelete= ?");
+            ps.setString(1, rutDelete);
+            ps.execute();
 
+        }catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
     }
 
     @Override

@@ -32,13 +32,30 @@ public class RoutineToDB implements RoutineDB {
     }
 
     @Override
-    public void UpdateRoutine(Connection link) {
-
+    public void UpdateRoutine(Connection link , Routine rutina, String idUpdate) {
+        try{
+            Gson gson = new Gson();
+            String json = gson.toJson(rutina.getTypeRoutine());
+            PreparedStatement ps = link.prepareStatement("UPDATE rutina SET(Nombre = ?, Ejercicio = ?) WHERE idUpdate = ?");
+            ps.setString(1, rutina.getNameRoutines());
+            ps.setString(2, json);
+            ps.setString(3, idUpdate);
+            
+            ps.execute();
+        }catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
     }
 
     @Override
-    public void DeleteRoutine(Connection link) {
-
+    public void DeleteRoutine(Connection link , Routine rutina , String idDelete) {
+        try{
+            PreparedStatement ps = link.prepareStatement("DELETE rutina FROM idDelete = ?");
+            ps.setString(1, idDelete);
+            ps.execute();
+        }catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
     }
 
     @Override
