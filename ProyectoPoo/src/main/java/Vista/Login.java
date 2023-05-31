@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
 
         botonIngresar.setBackground(new java.awt.Color(31, 64, 104));
         botonIngresar.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
-        botonIngresar.setForeground(new java.awt.Color(228, 63, 90));
+        botonIngresar.setForeground(new java.awt.Color(0, 153, 153));
         botonIngresar.setText("Ingresar");
         botonIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +57,8 @@ public class Login extends javax.swing.JFrame {
         });
 
         ingresoUsuario.setBackground(new java.awt.Color(22, 36, 71));
+        ingresoUsuario.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        ingresoUsuario.setForeground(new java.awt.Color(0, 153, 153));
         ingresoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ingresoUsuarioActionPerformed(evt);
@@ -64,10 +66,12 @@ public class Login extends javax.swing.JFrame {
         });
 
         labelUsuario.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        labelUsuario.setForeground(new java.awt.Color(228, 63, 90));
+        labelUsuario.setForeground(new java.awt.Color(0, 153, 153));
         labelUsuario.setText("Usuario");
 
         contrasenya.setBackground(new java.awt.Color(22, 36, 71));
+        contrasenya.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        contrasenya.setForeground(new java.awt.Color(0, 153, 153));
         contrasenya.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contrasenyaActionPerformed(evt);
@@ -75,13 +79,13 @@ public class Login extends javax.swing.JFrame {
         });
 
         labelContraseña.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        labelContraseña.setForeground(new java.awt.Color(228, 63, 90));
+        labelContraseña.setForeground(new java.awt.Color(0, 153, 153));
         labelContraseña.setText("Contraseña");
 
         jPanel1.setBackground(new java.awt.Color(22, 36, 71));
 
         titulo.setFont(new java.awt.Font("Pristina", 1, 48)); // NOI18N
-        titulo.setForeground(new java.awt.Color(228, 63, 90));
+        titulo.setForeground(new java.awt.Color(0, 153, 153));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Iniciar Sesión");
         titulo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -103,10 +107,10 @@ public class Login extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        jSeparator1.setForeground(new java.awt.Color(228, 63, 90));
+        jSeparator1.setForeground(new java.awt.Color(0, 153, 153));
 
         jSeparator4.setBackground(new java.awt.Color(228, 63, 90));
-        jSeparator4.setForeground(new java.awt.Color(228, 63, 90));
+        jSeparator4.setForeground(new java.awt.Color(0, 153, 153));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/132253_users_icon.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -203,7 +207,7 @@ public class Login extends javax.swing.JFrame {
             Menu menu = new Menu();
             menu.setVisible(true);
             this.setVisible(false);
-            setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+            //setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         }else{
             Mensaje.setText("Usuario o pasword incorrectos");
         }
