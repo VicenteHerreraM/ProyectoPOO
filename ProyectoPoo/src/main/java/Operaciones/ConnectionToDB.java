@@ -1,9 +1,8 @@
-package Controladores;
+package Operaciones;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,7 +31,7 @@ public class ConnectionToDB {
     *       F(X) CONNECT: NOS CONECTARÁ A LA  BASE DE DATOS
     */
 
-    public Connection connect(){
+    public Connection getConnection(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
             link = DriverManager.getConnection(this.URL, this.userLog, this.passwordLog);

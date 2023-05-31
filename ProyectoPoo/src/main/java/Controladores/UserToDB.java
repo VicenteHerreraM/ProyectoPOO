@@ -1,13 +1,12 @@
 package Controladores;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Modelos.UsuarioDB;
 import Modelos.Usuario;
+import Operaciones.ConnectionToDB;
+
 import java.util.ArrayList;
 
 public class UserToDB implements UsuarioDB{
@@ -17,11 +16,18 @@ public class UserToDB implements UsuarioDB{
     @Override
     public boolean CreateUser(Connection link, Usuario user) {
         try{
-            Statement state = link.createStatement();
-            query="insert into cliente(RUT,Nombre,Apellido,Altura,Peso,Contraseña,Correo,FechaNac,dietaCliente,rutinaCliente)values" +
-                    "('"+user.getRut()+"','"+user.getName()+"','"+user.getLastName()+"','"+user.getHeight()+"','"+user.getWeight()+
-                    "','"+user.getPassword()+"','"+user.getMail()+"','"+user.getBirthdate()+"','"+user.getTypeDiet()+"','"+user.getTypeRoutine()+"')";
-            state.executeUpdate(query);
+            PreparedStatement ps = link.prepareStatement("INSERT INTO cliente(RUT,Nombre,Apellido,Altura,Peso,Contraseña,Correo,FechaNac,dietaCliente,rutinaCliente) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, user.getRut());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getLastName());
+            ps.setFloat(4, user.getHeight());
+            ps.setFloat(5, user.getWeight());
+            ps.setString(6, user.getPassword());
+            ps.setString(7,  user.getMail());
+            ps.setDate(8, (Date) user.getBirthdate());
+            ps.setInt(9, user.getTypeDiet());
+            ps.setInt(10, user.getTypeRoutine());
+            ps.execute();
             return true;
 
         }catch (SQLException sqlExcept) {
@@ -49,7 +55,7 @@ public class UserToDB implements UsuarioDB{
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA CLIENTE)
-            query = "select * from cliente";
+            query = "SELECT * FROM cliente";
 
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
@@ -87,7 +93,7 @@ public class UserToDB implements UsuarioDB{
         Usuario user=new Usuario();
         try {
             Statement state = link.createStatement();
-            query="select * from cliente where RUT='"+rut+"'";
+            query="SELECT * FROM cliente WHERE RUT='"+rut+"'";
             ResultSet resultSets=state.executeQuery(query);
 
 

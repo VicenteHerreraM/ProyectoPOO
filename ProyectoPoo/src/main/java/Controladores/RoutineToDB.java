@@ -2,13 +2,11 @@ package Controladores;
 
 import Modelos.Routine;
 import Modelos.RoutineDB;
+import Operaciones.ConnectionToDB;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,10 +19,11 @@ public class RoutineToDB implements RoutineDB {
     public boolean CreateRoutine(Connection link, Routine routine) {
         try{
             Gson gson = new Gson();
-            Statement state = link.createStatement();
             String json = gson.toJson(routine.getTypeRoutine());
-            query="INSERT INTO rutina(ID_Rutina,Nombre_Rutina,Ejercicio)values(NULL, "+routine.getNameRoutines()+"','"+json+"')";
-            state.executeUpdate(query);
+            PreparedStatement ps = link.prepareStatement("INSERT INTO rutina(Nombre, Ejercicio) VALUES (?,?)");
+            ps.setString(1, routine.getNameRoutines());
+            ps.setString(2, json);
+            ps.execute();
             return true;
         }catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
@@ -33,12 +32,12 @@ public class RoutineToDB implements RoutineDB {
     }
 
     @Override
-    public void UpdateRoutine() {
+    public void UpdateRoutine(Connection link) {
 
     }
 
     @Override
-    public void DeleteRoutine() {
+    public void DeleteRoutine(Connection link) {
 
     }
 
@@ -53,7 +52,7 @@ public class RoutineToDB implements RoutineDB {
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA DIETA)
-            query = "select * from rutina";
+            query = "SELECT * FROM rutina";
 
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
@@ -88,7 +87,7 @@ public class RoutineToDB implements RoutineDB {
             // SE HACE LA CONEXIÓN A LA BASE DE DATOS
             Statement state = link.createStatement();
             // HACEMOS LA CONSULTA A LA BASE DE DATOS
-            query="select * from rutina where Nombre='"+nombre+"'";
+            query="SELECT * FROM rutina WHERE Nombre='"+nombre+"'";
             ResultSet resultSets=state.executeQuery(query);
             // RESULTADOS
             while (resultSets.next()){

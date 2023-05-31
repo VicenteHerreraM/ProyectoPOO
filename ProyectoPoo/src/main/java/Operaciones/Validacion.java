@@ -1,6 +1,10 @@
 package Operaciones;
 
+import com.sun.source.tree.AssertTree;
+import org.apache.commons.validator.routines.EmailValidator;
+
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Validacion{
     public Scanner Entrada=new Scanner(System.in);
@@ -11,7 +15,7 @@ public class Validacion{
     public void Mensaje(String texto){
         System.out.println(texto);
     }
-    public int ValidarEntero(){
+    public int isInteger(){
         int Cadena=-1;
         do{
             try{
@@ -28,7 +32,7 @@ public class Validacion{
         return Cadena;
     }
 
-    public String ValidarNombres(){
+    public String isName(){
         String Cadena=null;
         do{
             try{
@@ -41,11 +45,11 @@ public class Validacion{
         return Cadena;
     }
 
-    public double ValidarDouble(){
+    public float isDouble(){
 
-        double Cadena;
+        float Cadena;
         try{
-            Cadena=Entrada.nextDouble();
+            Cadena=Entrada.nextFloat();
             return Cadena;
 
         }catch(Exception e){
@@ -55,7 +59,7 @@ public class Validacion{
 
     }
 
-    public String ValidarAlfanumerico(){
+    public String isAlphanumeric(){
         String cadena=Entrada.next();
         if(cadena.matches("[A-Za-z0-9]*"))
             return cadena;
@@ -65,19 +69,24 @@ public class Validacion{
         return null;
     }
 
-    public boolean verificarMail(String mail) {
-        char arroba = '@';
-        for (int i = 0; i < mail.length(); i++) {
-            if (mail.charAt(i) == arroba) {
+    public boolean isValidEmail(String email) {
+        try{
+            if(EmailValidator.getInstance().isValid(email)){
                 return true;
             }
-
+        }catch (Exception e){
+            System.out.println(e);
         }
         return false;
     }
-    public String ValidarFecha(){
-        return null;
+    public boolean isValidDate(String date){
+        String regex = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20|21|22)\\d\\d$";
+        return Pattern.matches(regex, date);
     }
 
+    public static boolean isStrongPassword(String password) {
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{12,16}$";
+        return Pattern.matches(regex, password);
+    }
 }
 

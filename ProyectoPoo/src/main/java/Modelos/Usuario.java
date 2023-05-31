@@ -4,6 +4,7 @@
  */
 package Modelos;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -157,7 +158,7 @@ public class Usuario {
                                     4.- MOSTRAR
                                     0.- RETROCEDER
                                 """);
-                opcion= validar.ValidarEntero();
+                opcion= validar.isInteger();
                 switch (opcion){
                     case 1->usuario.agregarUsuario();
                     case 2->usuario.actualizarDatos( getRut());
@@ -182,7 +183,47 @@ public class Usuario {
      * */
 
     public void agregarUsuario() throws FileNotFoundException {
+        Scanner input = new Scanner(System.in);
+        String rut , mail, password , name , lastName;
+        float altura, peso;
+        int tipoDieta , tipoRutina;
+        Date birthdate;
+        birthdate = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        int i;
+        System.out.println("Antes de agregar a un usuario, necesito un rut\n");
+        System.out.println("Ingrese el rut del usuario\n");
+        rut = input.nextLine();
+        //(String mail, String password, String name, String lastName, String rut, float height, float weight, int typeDiet, int typeRoutine, Date birthdate)
+        for(i = 0 ; i < users.size() ; i++){
+            if(users.get(i).getRut().equals(rut)){
+                System.out.println("Usuario no encontrado, porfavor ingrese los correspondientes datos\n");
+                System.out.println("Ingrese Correo Electronico\n");
+                mail = input.next();
+                System.out.println("Ingrese Contraseña\n");
+                password = input.next();
+                System.out.println("Ingrese Nombre\n");
+                name = input.next();
+                System.out.println("Ingrese Apellido\n");
+                lastName = input.next();
+                System.out.println("Ingrese Altura\n");
+                altura = input.nextFloat();
+                System.out.println("Ingrese Peso\n");
+                peso = input.nextFloat();
+                System.out.println("Ingrese Tipo de Dieta\n");
+                tipoDieta = input.nextInt();
+                System.out.println("Ingrese Tipo de Rutina\n");
+                tipoRutina = input.nextInt();
+                System.out.println("Ingrese Año de nacimiento\n");
 
+                users.add(new Usuario(rut, mail , password , name , lastName , altura , peso , tipoDieta , tipoRutina  , birthdate));
+
+
+            }else{
+                System.out.println("Este usuario ya esta registrado");
+
+            }
+        }
     }
 
 
@@ -197,7 +238,10 @@ public class Usuario {
 
 
     public boolean eliminarDatos(String rut){        
+        int i;
+        for(i = 0 ; i < users.size() ; i++){
 
+        }
         return false;
     }
 }
