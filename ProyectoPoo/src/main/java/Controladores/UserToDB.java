@@ -70,7 +70,7 @@ public class UserToDB implements UsuarioDB{
     }
 
     @Override
-    public ArrayList<Usuario> ReadUsers(Connection link) {
+    public ArrayList<Usuario> PrintUsers(Connection link) {
         Usuario user=new Usuario();
         try {
 
@@ -140,5 +140,26 @@ public class UserToDB implements UsuarioDB{
         }
 
         return null;
+    }
+    
+    @Override
+    public boolean ReadUser(Connection link, String txtUser, String txtPass){
+        int count=0;
+        try {
+            Statement s = link.createStatement();
+            query="SELECT * FROM cliente WHERE RUT='"+txtUser+"' AND Contraseña='"+txtPass+"'";
+            ResultSet rs=s.executeQuery(query);
+  
+            while (rs.next()){
+                count++;
+            }
+            if(count>0) return true;
+  
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return false;
     }
 }

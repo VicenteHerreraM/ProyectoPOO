@@ -90,8 +90,8 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="ingresoUsuario" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="contrasenya" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                                              <Component id="txtrutUser" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtpassUser" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
@@ -115,7 +115,7 @@
                       <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ingresoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtrutUser" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -123,7 +123,7 @@
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelContraseña" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="contrasenya" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtpassUser" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -163,7 +163,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonIngresarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="ingresoUsuario">
+            <Component class="javax.swing.JTextField" name="txtrutUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="47" green="24" red="16" type="rgb"/>
@@ -176,7 +176,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingresoUsuarioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtrutUserActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelUsuario">
@@ -190,7 +190,7 @@
                 <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JPasswordField" name="contrasenya">
+            <Component class="javax.swing.JPasswordField" name="txtpassUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="47" green="24" red="16" type="rgb"/>
@@ -203,7 +203,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contrasenyaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtpassUserActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="labelContrase&#xf1;a">

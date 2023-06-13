@@ -1,5 +1,8 @@
 
 package Vista;
+import Operaciones.ConnectionToDB;
+import Controladores.UserToDB;
+import java.sql.Connection;
 
 
 public class Login extends javax.swing.JFrame {
@@ -24,9 +27,9 @@ public class Login extends javax.swing.JFrame {
         fondo = new java.awt.Panel();
         Mensaje = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
-        ingresoUsuario = new javax.swing.JTextField();
+        txtrutUser = new javax.swing.JTextField();
         labelUsuario = new javax.swing.JLabel();
-        contrasenya = new javax.swing.JPasswordField();
+        txtpassUser = new javax.swing.JPasswordField();
         labelContraseña = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
@@ -56,12 +59,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        ingresoUsuario.setBackground(new java.awt.Color(22, 36, 71));
-        ingresoUsuario.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
-        ingresoUsuario.setForeground(new java.awt.Color(0, 153, 153));
-        ingresoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txtrutUser.setBackground(new java.awt.Color(22, 36, 71));
+        txtrutUser.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
+        txtrutUser.setForeground(new java.awt.Color(0, 153, 153));
+        txtrutUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ingresoUsuarioActionPerformed(evt);
+                txtrutUserActionPerformed(evt);
             }
         });
 
@@ -69,12 +72,12 @@ public class Login extends javax.swing.JFrame {
         labelUsuario.setForeground(new java.awt.Color(0, 153, 153));
         labelUsuario.setText("Usuario");
 
-        contrasenya.setBackground(new java.awt.Color(22, 36, 71));
-        contrasenya.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
-        contrasenya.setForeground(new java.awt.Color(0, 153, 153));
-        contrasenya.addActionListener(new java.awt.event.ActionListener() {
+        txtpassUser.setBackground(new java.awt.Color(22, 36, 71));
+        txtpassUser.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        txtpassUser.setForeground(new java.awt.Color(0, 153, 153));
+        txtpassUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contrasenyaActionPerformed(evt);
+                txtpassUserActionPerformed(evt);
             }
         });
 
@@ -149,8 +152,8 @@ public class Login extends javax.swing.JFrame {
                                         .addComponent(labelUsuario))
                                     .addGap(18, 18, 18)
                                     .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(ingresoUsuario, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(contrasenya, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtrutUser, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtpassUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jSeparator3)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,14 +169,14 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelUsuario)
-                    .addComponent(ingresoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtrutUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelContraseña)
-                    .addComponent(contrasenya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpassUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,25 +205,30 @@ public class Login extends javax.swing.JFrame {
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
-        
-        if(ingresoUsuario.getText().equals("pepito") && contrasenya.getText().equals("123")){
+        ConnectionToDB connection = new ConnectionToDB();
+        Connection link = connection.getConnection();
+        UserToDB user = new UserToDB();
+        if(user.ReadUser(link, txtrutUser.getText(), txtpassUser.getText()))
+        if(txtrutUser.getText().equals("pepito") && txtpassUser.getText().equals("123")){
+            connection.closeConnection();
             Menu menu = new Menu();
             menu.setVisible(true);
             this.setVisible(false);
-            //setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         }else{
             Mensaje.setText("Usuario o pasword incorrectos");
+            connection.closeConnection();
         }
         
     }//GEN-LAST:event_botonIngresarActionPerformed
 
-    private void ingresoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoUsuarioActionPerformed
+    private void txtrutUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrutUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ingresoUsuarioActionPerformed
+    }//GEN-LAST:event_txtrutUserActionPerformed
 
-    private void contrasenyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenyaActionPerformed
+    private void txtpassUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contrasenyaActionPerformed
+    }//GEN-LAST:event_txtpassUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,9 +269,7 @@ public class Login extends javax.swing.JFrame {
     private java.awt.Panel BD;
     private javax.swing.JLabel Mensaje;
     private javax.swing.JButton botonIngresar;
-    private javax.swing.JPasswordField contrasenya;
     private java.awt.Panel fondo;
-    private javax.swing.JTextField ingresoUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -274,5 +280,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel labelContraseña;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel titulo;
+    private javax.swing.JPasswordField txtpassUser;
+    private javax.swing.JTextField txtrutUser;
     // End of variables declaration//GEN-END:variables
 }
