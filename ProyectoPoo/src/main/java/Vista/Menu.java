@@ -37,15 +37,33 @@ public class Menu extends javax.swing.JFrame {
         fondo.setBackground(new java.awt.Color(27, 27, 47));
         fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jMenuBar1.setBackground(new java.awt.Color(22, 36, 71));
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenuBar1.setForeground(new java.awt.Color(0, 153, 153));
+        jMenuBar1.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
 
         menuUsuarios.setText("Usuarios");
+        menuUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuUsuariosMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuUsuarios);
 
         menuDietas.setText("Dietas");
+        menuDietas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuDietasMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuDietas);
 
         menuRutinas.setText("Rutinas");
+        menuRutinas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuRutinasMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(menuRutinas);
 
         setJMenuBar(jMenuBar1);
@@ -58,11 +76,28 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 572, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuUsuariosMouseClicked
+        
+        PanelUsuario panelUsuario = new PanelUsuario();
+        panelUsuario.setVisible(true);
+        
+    }//GEN-LAST:event_menuUsuariosMouseClicked
+
+    private void menuDietasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDietasMouseClicked
+        PanelDieta panelDieta = new PanelDieta();
+        panelDieta.setVisible(true);
+    }//GEN-LAST:event_menuDietasMouseClicked
+
+    private void menuRutinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuRutinasMouseClicked
+        PanelRutina panelRutina = new PanelRutina();
+        panelRutina.setVisible(true);
+    }//GEN-LAST:event_menuRutinasMouseClicked
 
     /**
      * @param args the command line arguments

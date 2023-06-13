@@ -57,7 +57,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         ingresoUsuario.setBackground(new java.awt.Color(22, 36, 71));
-        ingresoUsuario.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        ingresoUsuario.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         ingresoUsuario.setForeground(new java.awt.Color(0, 153, 153));
         ingresoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
