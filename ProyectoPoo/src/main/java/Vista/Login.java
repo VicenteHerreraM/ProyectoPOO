@@ -208,15 +208,15 @@ public class Login extends javax.swing.JFrame {
         ConnectionToDB connection = new ConnectionToDB();
         Connection link = connection.getConnection();
         UserToDB user = new UserToDB();
-        if(user.ReadUser(link, txtrutUser.getText(), txtpassUser.getText()))
-        if(txtrutUser.getText().equals("pepito") && txtpassUser.getText().equals("123")){
+        if(user.ReadUser(link, txtrutUser.getText(), txtpassUser.getText())){
+            
             connection.closeConnection();
             Menu menu = new Menu();
             menu.setVisible(true);
             this.setVisible(false);
             setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         }else{
-            Mensaje.setText("Usuario o pasword incorrectos");
+            Mensaje.setText("Usuario o password incorrectos");
             connection.closeConnection();
         }
         
