@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import Modelos.UsuarioDB;
 import Modelos.Usuario;
 import Operaciones.ConnectionToDB;
+import java.sql.Connection;
 
 import java.util.ArrayList;
 
