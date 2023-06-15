@@ -6,7 +6,9 @@ package Vista;
 
 import Controladores.*;
 import Modelos.Usuario;
-import Operaciones.ConnectionToDB;
+import Modelos.Diet;
+import Modelos.Routine;
+import Operaciones.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -28,8 +30,31 @@ public class PanelUsuario extends javax.swing.JFrame {
         initComponents();
         connection = new ConnectionToDB();
         link = connection.getConnection();
-        
-        
+        chargeRoutine();
+        chargueDiet();
+
+    }
+
+    public void chargeRoutine(){
+        ArrayList<Routine>routines=new ArrayList<>();
+        RoutineToDB listRoutine = new RoutineToDB();
+        routines=listRoutine.ReadRoutines(link);
+        for(int i=0; i < routines.size();i++)
+        {
+            Routine routine = new Routine(routines.get(i).getIdRoutines(),routines.get(i).getNameRoutines(),routines.get(i).getTypeRoutine());
+            cmbRutina.addItem(routine.getNameRoutines());
+        }
+    }
+
+    public void chargueDiet(){
+        ArrayList<Diet>diets=new ArrayList<>();
+        DietToDB listDiet = new DietToDB();
+        diets=listDiet.ReadDiets(link);
+        for(int i=0; i < diets.size();i++)
+        {
+            Diet diet = new Diet(diets.get(i).getIdRoutines(),diets.get(i).getNameRoutines(),diets.get(i).getTypeRoutine());
+            cmbDieta.addItem(diet.getNameRoutines());
+        }
     }
 
     /**
@@ -371,12 +396,13 @@ public class PanelUsuario extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         Usuario consultaUser = new Usuario();
         UserToDB user = new UserToDB();
-        
-        consultaUser.setRut(txtRut.getText());
-        consultaUser.setName(txtNombre.getText());
-        consultaUser.setPassword(txtContrasenia.getText());
-        consultaUser.setLastName(txtApellido.getText());
-        consultaUser.setMail(txtCorreo.getText());
+        Validacion val = new Validacion();
+        if(val.validarRUT(txtRut.getText()) && val.isName(txtNombre.getText()) &&
+            val.isName(txtApellido.getText()) && val.isStrongPassword(txtContrasenia.getText()) &&
+                val.isValidEmail(txtCorreo.getText())){
+
+
+        }
         //consultaUser.setTypeDiet(cmbDieta.getSelectedItem().toString());
         //consultaUser.setTypeRoutine(cmbRutina.getSelectedItem().toString());
         //consultaUser.setHeight(txtAltura.getText());

@@ -69,7 +69,7 @@ public class RoutineToDB implements RoutineDB {
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA DIETA)
-            query = "SELECT * FROM rutina";
+            query = "SELECT * FROM rutina ORDER BY Nombre_Rutina ASC";
 
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);

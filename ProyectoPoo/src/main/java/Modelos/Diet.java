@@ -7,6 +7,10 @@ public class Diet extends TypesRoutines{
     public Diet() {
     }
 
+    public Diet(int idRoutines, String nameRoutines, ArrayList<String> typeRoutine) {
+        super(idRoutines, nameRoutines, typeRoutine);
+    }
+
     @Override
     boolean CreateRoutines() {
         return false;

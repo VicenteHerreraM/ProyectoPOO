@@ -17,7 +17,7 @@ public class UserToDB implements UsuarioDB{
     @Override
     public boolean CreateUser(Connection link, Usuario user) {
         try{
-            PreparedStatement ps = link.prepareStatement("INSERT INTO cliente(RUT,Nombre,Apellido,Altura,Peso,Contraseña,Correo,FechaNac,dietaCliente,rutinaCliente) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement ps = link.prepareStatement("INSERT INTO cliente(RUT,Nombre,Apellido,Altura,Peso,Contrasenya,Correo,FechaNac,dietaCliente,rutinaCliente) VALUES (?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, user.getRut());
             ps.setString(2, user.getName());
             ps.setString(3, user.getLastName());
@@ -93,7 +93,7 @@ public class UserToDB implements UsuarioDB{
                 user.setLastName(resultSelect.getString("Apellido"));
                 user.setHeight(resultSelect.getInt("Altura"));
                 user.setWeight(resultSelect.getFloat("Peso"));
-                user.setPassword(resultSelect.getString("Contraseña"));
+                user.setPassword(resultSelect.getString("Contrasenya"));
                 user.setMail(resultSelect.getString("Correo"));
                 user.setBirthdate(resultSelect.getDate("FechaNac"));
                 user.setTypeDiet(resultSelect.getInt("dietaCliente"));
@@ -129,7 +129,7 @@ public class UserToDB implements UsuarioDB{
                 user.setLastName(resultSets.getString("Apellido"));
                 user.setHeight(resultSets.getInt("Altura"));
                 user.setWeight(resultSets.getFloat("Peso"));
-                user.setPassword(resultSets.getString("Contraseña"));
+                user.setPassword(resultSets.getString("Contrasenya"));
                 user.setMail(resultSets.getString("Correo"));
                 user.setBirthdate(resultSets.getDate("FechaNac"));
                 user.setTypeDiet(resultSets.getInt("dietaCliente"));

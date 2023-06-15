@@ -6,6 +6,16 @@ public abstract class TypesRoutines{
     protected int idRoutines;
     protected String nameRoutines;
     protected ArrayList<String> typeRoutine;
+
+    public TypesRoutines() {
+    }
+
+    public TypesRoutines(int idRoutines, String nameRoutines, ArrayList<String> typeRoutine) {
+        this.idRoutines = idRoutines;
+        this.nameRoutines = nameRoutines;
+        this.typeRoutine = typeRoutine;
+    }
+
     abstract boolean CreateRoutines();
     abstract boolean DeleteRoutines();
     abstract void PrintRoutines();

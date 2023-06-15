@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Routine extends TypesRoutines{
     public Routine() {
+
+    }
+
+    public Routine(int idRoutines, String nameRoutines, ArrayList<String> typeRoutine) {
+        super(idRoutines, nameRoutines, typeRoutine);
     }
 
     @Override
