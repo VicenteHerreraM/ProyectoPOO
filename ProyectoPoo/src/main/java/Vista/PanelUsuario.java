@@ -10,7 +10,12 @@ import Modelos.Diet;
 import Modelos.Routine;
 import Operaciones.*;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,6 +44,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         ArrayList<Routine>routines=new ArrayList<>();
         RoutineToDB listRoutine = new RoutineToDB();
         routines=listRoutine.ReadRoutines(link);
+        cmbRutina.removeAllItems();
         for(int i=0; i < routines.size();i++)
         {
             Routine routine = new Routine(routines.get(i).getIdRoutines(),routines.get(i).getNameRoutines(),routines.get(i).getTypeRoutine());
@@ -50,11 +56,13 @@ public class PanelUsuario extends javax.swing.JFrame {
         ArrayList<Diet>diets=new ArrayList<>();
         DietToDB listDiet = new DietToDB();
         diets=listDiet.ReadDiets(link);
+        cmbDieta.removeAllItems();
         for(int i=0; i < diets.size();i++)
         {
             Diet diet = new Diet(diets.get(i).getIdRoutines(),diets.get(i).getNameRoutines(),diets.get(i).getTypeRoutine());
             cmbDieta.addItem(diet.getNameRoutines());
         }
+
     }
 
     /**
@@ -89,12 +97,12 @@ public class PanelUsuario extends javax.swing.JFrame {
         LabelCorreo = new javax.swing.JLabel();
         LabelDieta = new javax.swing.JLabel();
         LabelEdad = new javax.swing.JLabel();
-        txtEdad = new javax.swing.JTextField();
         LabelRutina = new javax.swing.JLabel();
         cmbDieta = new javax.swing.JComboBox<>();
         cmbRutina = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
+        txtFNacimiento = new com.toedter.calendar.JDateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -183,15 +191,11 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         LabelEdad.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         LabelEdad.setForeground(new java.awt.Color(0, 153, 153));
-        LabelEdad.setText("Edad");
+        LabelEdad.setText("F. Nacimiento");
 
         LabelRutina.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         LabelRutina.setForeground(new java.awt.Color(0, 153, 153));
         LabelRutina.setText("Rutina");
-
-        cmbDieta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmbRutina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pierna", "Empuje", "Jalón", "Full body" }));
 
         btnBuscar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -209,53 +213,52 @@ public class PanelUsuario extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(LabelCorreo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(LabelContrasenia)
-                                    .addGap(142, 142, 142))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(LabelApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(LabelDieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(LabelRutina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtApellido)
-                                        .addComponent(cmbDieta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmbRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(LabelNombre)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(LabelAltura)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LabelPeso)
-                                .addGap(7, 7, 7)
-                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(LabelEdad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(LabelRut)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBuscar)))
-                        .addGap(22, 22, 22))
+                                .addComponent(btnBuscar))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(LabelEdad)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(LabelContrasenia)
+                                    .addGap(142, 142, 142))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(LabelNombre)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(LabelAltura)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(LabelPeso)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(LabelApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(LabelDieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(LabelRutina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(LabelCorreo))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCorreo)
+                                        .addComponent(txtApellido)
+                                        .addComponent(cmbDieta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbRutina, 0, 116, Short.MAX_VALUE)))))
+                        .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -271,7 +274,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelRut)
@@ -300,15 +303,17 @@ public class PanelUsuario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelRutina)
                     .addComponent(cmbRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelAltura)
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelPeso)
-                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelEdad)
-                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(btnCrear)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -393,16 +398,74 @@ public class PanelUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) throws ParseException {//GEN-FIRST:event_btnCrearActionPerformed
         Usuario consultaUser = new Usuario();
         UserToDB user = new UserToDB();
         Validacion val = new Validacion();
-        if(val.validarRUT(txtRut.getText()) && val.isName(txtNombre.getText()) &&
-            val.isName(txtApellido.getText()) && val.isStrongPassword(txtContrasenia.getText()) &&
-                val.isValidEmail(txtCorreo.getText())){
+        if(!val.validarRUT(txtRut.getText())){
+            if(txtRut.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "INGRESE UN RUT\nINGRESA UN RUT\nejemplo: 11222333-4", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "RUT NO VALIDO\nejemplo: 11222333-4", "Error", JOptionPane.ERROR_MESSAGE);
 
-
+            }
         }
+        if(!val.isValidEmail(txtCorreo.getText())) {
+            if(txtCorreo.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "INGRESE UN CORREO\nINGRESA UN CORREO", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "EMAIL NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
+        if(!val.isName(txtNombre.getText())){
+            if(txtNombre.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "INGRESE UN NOMBRE", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "NOMBRE NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(!val.isName(txtApellido.getText())){
+            if(txtApellido.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "INGRESE UN APELLIDO", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "APELLIDO NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(!val.isStrongPassword(txtContrasenia.getText())){
+            if(txtContrasenia.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "INGRESE UNA CONTRASEÑA", "Error", JOptionPane.ERROR_MESSAGE);
+            }else if(txtContrasenia.getText().length()<12){
+                JOptionPane.showMessageDialog(null, "CONTRASEÑA DEMASIADO CORTA", "Error", JOptionPane.ERROR_MESSAGE);
+            } else if (txtContrasenia.getText().length()>12) {
+                JOptionPane.showMessageDialog(null, "CONTRASEÑA DEMASIADO LARGA", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "CONTRASEÑA NO VÁLIDA\nDebe tener letra, número y caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(val.isDouble(txtPeso.getText())<=0){
+            if(txtPeso.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "INGRESE UN PESO", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "PESO NO VÁLIDO\ningrese un peso mayor a 0 y en formato de kg: 11,11 ó 11.11", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(val.isPositiveInteger(txtAltura.getText())<=0){
+            if(txtAltura.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "INGRESE UNA ALTURA", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "ALTURA NO VÁLIDA\ningrese una altura mayor a 0 y en formato de cm: 123", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        if(val.isValidDate(txtFNacimiento.getDate())<16)
+        { 
+                JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if()
         //consultaUser.setTypeDiet(cmbDieta.getSelectedItem().toString());
         //consultaUser.setTypeRoutine(cmbRutina.getSelectedItem().toString());
         //consultaUser.setHeight(txtAltura.getText());
@@ -450,6 +513,18 @@ public class PanelUsuario extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnCargarMouseClicked
+
+    private void cmbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDietaActionPerformed
+
+    private void cmbRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRutinaActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,7 +594,7 @@ public class PanelUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtEdad;
+    private com.toedter.calendar.JDateChooser txtFNacimiento;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtRut;

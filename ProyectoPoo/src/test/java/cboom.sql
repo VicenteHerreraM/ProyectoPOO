@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2023 a las 23:30:56
+-- Tiempo de generación: 16-06-2023 a las 16:31:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cliente` (
-  `RUT` varchar(12) NOT NULL,
+  `RUT` varchar(10) NOT NULL,
   `Nombre` varchar(35) NOT NULL,
   `Apellido` varchar(35) NOT NULL,
   `Altura` int(3) NOT NULL,
   `Peso` decimal(6,2) NOT NULL,
-  `Contraseña` varchar(100) NOT NULL,
+  `Contrasenya` varchar(100) NOT NULL,
   `Correo` varchar(50) NOT NULL,
   `FechaNac` date NOT NULL,
   `dietaCliente` int(11) NOT NULL,
@@ -44,7 +44,7 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`RUT`, `Nombre`, `Apellido`, `Altura`, `Peso`, `Contraseña`, `Correo`, `FechaNac`, `dietaCliente`, `rutinaCliente`) VALUES
+INSERT INTO `cliente` (`RUT`, `Nombre`, `Apellido`, `Altura`, `Peso`, `Contrasenya`, `Correo`, `FechaNac`, `dietaCliente`, `rutinaCliente`) VALUES
 ('0000000-1', 'ISABEL', 'II', 174, 65.00, 'password', 'princesaMisifu@gmail.com', '1926-04-21', 3, 1),
 ('11222333-1', 'DORIAN', 'CANALES', 180, 65.00, 'AAaa1122..,,', 'xXxdOrIaNxXx@yahoo.com', '2002-02-06', 2, 1),
 ('1249535-3', 'ADOLF', 'MALITO', 174, 72.00, 'PazyArmonia100%', 'adolfitoUwU@outlook.com', '1889-04-20', 3, 4),

@@ -61,7 +61,6 @@ public class DietToDB implements DietDB {
     
     @Override
     public ArrayList<Diet> ReadDiets(Connection link) {
-        Diet diet=new Diet();
         Gson gson=new Gson();
         try {
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
@@ -70,14 +69,14 @@ public class DietToDB implements DietDB {
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA DIETA)
-            query = "SELECT * FROM dieta";
+            query = "SELECT * FROM dieta ORDER BY Nombre ASC";
 
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
 
             // LEEMOS HASTA QUE ENCONTREMOS UN NULL EN LA FILA
             while (resultSelect.next()) {
-
+                Diet diet=new Diet();
                 // VAMOS ASIGNANDOLES VALORES A NUESTRA DIETA DEL PROGRAMA (PROVIENE DE LA DB(
                 diet.setIdRoutines(resultSelect.getInt("ID_Dieta"));
                 diet.setNameRoutines(resultSelect.getString("Nombre"));

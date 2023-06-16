@@ -148,7 +148,7 @@ public class UserToDB implements UsuarioDB{
         int count=0;
         try {
             Statement s = link.createStatement();
-            query="SELECT * FROM cliente WHERE RUT='"+txtUser+"' AND Contraseña='"+txtPass+"'";
+            query="SELECT * FROM cliente WHERE RUT='"+txtUser+"' AND Contrasenya='"+txtPass+"'";
             ResultSet rs=s.executeQuery(query);
   
             while (rs.next()){

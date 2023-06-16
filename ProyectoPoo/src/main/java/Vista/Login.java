@@ -209,7 +209,6 @@ public class Login extends javax.swing.JFrame {
         Connection link = connection.getConnection();
         UserToDB user = new UserToDB();
         if(user.ReadUser(link, txtrutUser.getText(), txtpassUser.getText())){
-            
             connection.closeConnection();
             Menu menu = new Menu();
             menu.setVisible(true);

@@ -43,7 +43,6 @@ public class ConnectionToDB {
                     .....................................................
                     """);
 
-
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, exception);
         }

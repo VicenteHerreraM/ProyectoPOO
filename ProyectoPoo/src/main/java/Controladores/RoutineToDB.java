@@ -60,7 +60,7 @@ public class RoutineToDB implements RoutineDB {
 
     @Override
     public ArrayList<Routine> ReadRoutines(Connection link) {
-        Routine routine=new Routine();
+
         Gson gson=new Gson();
         try {
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
@@ -70,20 +70,20 @@ public class RoutineToDB implements RoutineDB {
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA DIETA)
             query = "SELECT * FROM rutina ORDER BY Nombre_Rutina ASC";
-
+            ListRoutines.clear();
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
 
             // LEEMOS HASTA QUE ENCONTREMOS UN NULL EN LA FILA
             while (resultSelect.next()) {
-
+                Routine routineRead = new Routine();
                 // VAMOS ASIGNANDOLES VALORES A NUESTRA DIETA DEL PROGRAMA (PROVIENE DE LA DB(
-                routine.setIdRoutines(resultSelect.getInt("ID_Rutina"));
-                routine.setNameRoutines(resultSelect.getString("Nombre_Rutina"));
-                routine.setTypeRoutine(gson.fromJson(resultSelect.getString("Ejercicio"), type));
+                routineRead.setIdRoutines(resultSelect.getInt("ID_Rutina"));
+                routineRead.setNameRoutines(resultSelect.getString("Nombre_Rutina"));
+                routineRead.setTypeRoutine(gson.fromJson(resultSelect.getString("Ejercicio"), type));
 
                 // AGREGAMOS A NUESTRO ARREGLO DE USUARIOS EL CLIENTE SACADO DEL DB
-                ListRoutines.add(routine);
+                ListRoutines.add(routineRead);
 
             }
 
@@ -108,6 +108,7 @@ public class RoutineToDB implements RoutineDB {
             ResultSet resultSets=state.executeQuery(query);
             // RESULTADOS
             while (resultSets.next()){
+
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
                 routine.setIdRoutines(resultSets.getInt("ID_Dieta"));
                 routine.setNameRoutines(resultSets.getString("Nombre"));

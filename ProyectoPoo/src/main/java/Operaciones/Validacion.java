@@ -2,8 +2,15 @@ package Operaciones;
 
 import com.sun.source.tree.AssertTree;
 import org.apache.commons.validator.routines.EmailValidator;
-
 import javax.swing.*;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,21 +24,12 @@ public class Validacion{
     public void Mensaje(String texto){
         System.out.println(texto);
     }
-    public int isInteger(){
-        int Cadena=-1;
-        do{
-            try{
-                Cadena=Entrada.nextInt();
-                return Cadena;
-
-            }catch(Exception e){
-                Mensaje("Dato no válido "+e.toString());
-            }
-
-        }while(Cadena<0 || Cadena==0);
-
-
-        return Cadena;
+    public int isPositiveInteger(String numero) {
+        try {
+            return Integer.parseInt(numero);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 
     public boolean isName(String name){
@@ -46,28 +44,16 @@ public class Validacion{
         }
     }
 
-    public float isDouble(){
-
-        float Cadena;
-        try{
-            Cadena=Entrada.nextFloat();
-            return Cadena;
-
-        }catch(Exception e){
-            Mensaje("Este dato no es válido");
+    public Double isDouble(String numero) throws ParseException {
+        NumberFormat nfUS = NumberFormat.getInstance(Locale.US);
+        NumberFormat nfFR = NumberFormat.getInstance(Locale.FRANCE);
+        double num=0;
+        try {
+            num = nfUS.parse(numero).doubleValue();
+        } catch (ParseException e) {
+            num = nfFR.parse(numero).doubleValue();
         }
-        return -1;
-
-    }
-
-    public String isAlphanumeric(){
-        String cadena=Entrada.next();
-        if(cadena.matches("[A-Za-z0-9]*"))
-            return cadena;
-        else
-            Mensaje("Dato no válido");
-
-        return null;
+        return num;
     }
 
     public boolean isValidEmail(String email) {
@@ -76,21 +62,26 @@ public class Validacion{
                 return true;
             }
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "EMAIL NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return false;
     }
-    public boolean isValidDate(String date){
-        String regex = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20|21|22)\\d\\d$";
-        return Pattern.matches(regex, date);
+    public int isValidDate(Date date){
+        try{
+            Instant instant= date.toInstant();
+            LocalDate localDate = LocalDate.ofInstant(instant,ZoneId.systemDefault());
+            LocalDate localNow = LocalDate.now();
+            Period period = Period.between(localDate, localNow);
+            return period.getYears();
+        }catch(Exception e){
+            return 0;
+        }
     }
 
     public boolean isStrongPassword(String password) {
         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{12,16}$";
         if(!Pattern.matches(regex, password))
         {
-            JOptionPane.showMessageDialog(null, "Contraseña no fuerte, verifique que tenga números y carácteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;
@@ -109,7 +100,6 @@ public class Validacion{
         try {
             num = Integer.parseInt(numero, 10); // Usar la base 10
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El String no es un número válido", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
