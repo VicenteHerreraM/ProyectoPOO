@@ -150,7 +150,11 @@ public class PanelUsuario extends javax.swing.JFrame {
         btnCrear.setText("Crear");
         btnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
+                try {
+                    btnCrearActionPerformed(evt);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
@@ -460,12 +464,10 @@ public class PanelUsuario extends javax.swing.JFrame {
             }
         }
 
-        if(val.isValidDate(txtFNacimiento.getDate())<16)
-        { 
-                JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE);
+        if(val.isValidDate(txtFNacimiento.getDate())<16) {
+            JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-        if()
         //consultaUser.setTypeDiet(cmbDieta.getSelectedItem().toString());
         //consultaUser.setTypeRoutine(cmbRutina.getSelectedItem().toString());
         //consultaUser.setHeight(txtAltura.getText());
