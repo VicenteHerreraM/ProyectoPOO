@@ -17,15 +17,16 @@ public class UserToDB implements UsuarioDB{
     @Override
     public boolean CreateUser(Connection link, Usuario user) {
         try{
-            PreparedStatement ps = link.prepareStatement("INSERT INTO cliente(RUT,Nombre,Apellido,Altura,Peso,Contrasenya,Correo,FechaNac,dietaCliente,rutinaCliente) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement ps = link.prepareStatement("INSERT INTO cliente(RUT,Nombre,Apellido,Altura,Peso,Contrasenya,Correo,FechaNac,dietaCliente,rutinaCliente) VALUES (?,UPPER(?),UPPER(?),?,?,?,?,?,?,?)");
             ps.setString(1, user.getRut());
             ps.setString(2, user.getName());
             ps.setString(3, user.getLastName());
-            ps.setFloat(4, user.getHeight());
-            ps.setFloat(5, user.getWeight());
+            ps.setInt(4, user.getHeight());
+            ps.setDouble(5, user.getWeight());
             ps.setString(6, user.getPassword());
             ps.setString(7,  user.getMail());
-            ps.setDate(8, (Date) user.getBirthdate());
+            java.sql.Date sqlDate = new java.sql.Date (user.getBirthdate().getTime());
+            ps.setDate(8, sqlDate);
             ps.setInt(9, user.getTypeDiet());
             ps.setInt(10, user.getTypeRoutine());
             ps.execute();
@@ -44,8 +45,8 @@ public class UserToDB implements UsuarioDB{
             ps.setString(1, user.getRut());
             ps.setString(2, user.getName());
             ps.setString(3, user.getLastName());
-            ps.setFloat(4, user.getHeight());
-            ps.setFloat(5, user.getWeight());
+            ps.setInt(4, user.getHeight());
+            ps.setDouble(5, user.getWeight());
             ps.setString(6, user.getPassword());
             ps.setString(7,  user.getMail());
             ps.setDate(8, (Date) user.getBirthdate());

@@ -104,15 +104,15 @@ public class RoutineToDB implements RoutineDB {
             // SE HACE LA CONEXIÓN A LA BASE DE DATOS
             Statement state = link.createStatement();
             // HACEMOS LA CONSULTA A LA BASE DE DATOS
-            query="SELECT * FROM rutina WHERE Nombre='"+nombre+"'";
+            query="SELECT * FROM rutina WHERE Nombre_Rutina='"+nombre+"'";
             ResultSet resultSets=state.executeQuery(query);
             // RESULTADOS
             while (resultSets.next()){
 
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
-                routine.setIdRoutines(resultSets.getInt("ID_Dieta"));
-                routine.setNameRoutines(resultSets.getString("Nombre"));
-                routine.setTypeRoutine(gson.fromJson(resultSets.getString("Comida"), type));
+                routine.setIdRoutines(resultSets.getInt("ID_Rutina"));
+                routine.setNameRoutines(resultSets.getString("Nombre_Rutina"));
+                routine.setTypeRoutine(gson.fromJson(resultSets.getString("Ejercicio"), type));
             }
             return routine;
         } catch (SQLException sqlExcept) {

@@ -17,7 +17,8 @@ public class Usuario {
      * ATRIBUTOS
      */
     private String mail, password, name, lastName, rut;
-    private float height, weight;
+    private int height;
+    private double weight;
     private int typeDiet, typeRoutine;
     private Date birthdate;
     private ArrayList<Usuario> users = new ArrayList<>();
@@ -26,7 +27,7 @@ public class Usuario {
 
     }
 
-    public Usuario(String mail, String password, String name, String lastName, String rut, float height, float weight, int typeDiet, int typeRoutine, Date birthdate) {
+    public Usuario(String mail, String password, String name, String lastName, String rut, int height, double weight, int typeDiet, int typeRoutine, Date birthdate) {
         this.mail = mail;
         this.password = password;
         this.name = name;
@@ -71,11 +72,11 @@ public class Usuario {
         return typeRoutine;
     }
 
-    public float getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
@@ -119,11 +120,11 @@ public class Usuario {
         this.typeRoutine = typeRoutine;
     }
 
-    public void setHeight(float height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

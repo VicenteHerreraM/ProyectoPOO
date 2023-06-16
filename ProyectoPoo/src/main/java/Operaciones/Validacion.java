@@ -79,7 +79,7 @@ public class Validacion{
     }
 
     public boolean isStrongPassword(String password) {
-        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*]).{12,16}$";
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[¿'?~!@#$%^&*]).{12,16}$";
         if(!Pattern.matches(regex, password))
         {
             return false;
