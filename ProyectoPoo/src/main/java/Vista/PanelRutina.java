@@ -4,6 +4,13 @@
  */
 package Vista;
 
+import Controladores.DietToDB;
+import Modelos.Diet;
+import Operaciones.ConnectionToDB;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Acer
@@ -13,8 +20,14 @@ public class PanelRutina extends javax.swing.JFrame {
     /**
      * Creates new form PanelontrolRutina
      */
+    
+    public ConnectionToDB conexion;
+    public Connection link;
     public PanelRutina() {
         initComponents();
+        
+        conexion=new ConnectionToDB();
+        link=conexion.getConnection();
     }
 
     /**
@@ -41,6 +54,7 @@ public class PanelRutina extends javax.swing.JFrame {
         txtEjercicio = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        btnCargar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +82,7 @@ public class PanelRutina extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 440));
+        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 380));
 
         jPanel2.setBackground(new java.awt.Color(22, 36, 71));
 
@@ -113,7 +127,7 @@ public class PanelRutina extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -139,12 +153,12 @@ public class PanelRutina extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(141, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,6 +202,14 @@ public class PanelRutina extends javax.swing.JFrame {
 
         BD.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 60));
 
+        btnCargar.setText("Cargar");
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
+        BD.add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,6 +235,13 @@ public class PanelRutina extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        // TODO add your handling code here:
+
+
+        
+    }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,6 +283,7 @@ public class PanelRutina extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BD;
+    private javax.swing.JButton btnCargar;
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;

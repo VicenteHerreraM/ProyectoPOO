@@ -32,29 +32,55 @@ public class DietToDB implements DietDB {
         return false;
     }
     
+    public int contarDietas(Connection link , String nombreDieta) throws SQLException{
+        int cont = 0;
+        
+        Statement state = link.createStatement();
+
+            // LE DECIMOS QUÉ QUEREMOS LEER (TABLA CLIENTE)
+            query = "SELECT COUNT(*) FROM dieta WHERE Nombre = '"+nombreDieta+"' ";
+
+            //GUARDAMOS EL RESULTADO DE LA CONSULTA EN "RESULTSELECT"
+            ResultSet resultSelect = state.executeQuery(query);
+        if (resultSelect.next()){
+            cont = resultSelect.getInt(1);
+            return cont;
+        }
+        
+        
+        
+
+        return cont;
+    }
+    
+    
     @Override    
-    public void UpdateDiet(Connection link ,int searchID , Diet dieta) {
+    public boolean UpdateDiet(Connection link  , Diet dieta) {
         try{
             Gson gson = new Gson();
             String json = gson.toJson(dieta.getTypeRoutine());
-            PreparedStatement ps = link.prepareStatement("UPDATE dieta SET (Nombre=?, Comida=?) WHERE seachID = ? ");
-            ps.setString(1, dieta.getNameRoutines());
-            ps.setString(2, json);
-            ps.setInt(3, searchID ); //Quizas esta linea esta demás.
+            PreparedStatement ps = link.prepareStatement("UPDATE dieta SET Comida=? WHERE Nombre = ? ");
+            ps.setString(1, json);
+            ps.setString(2, dieta.getNameRoutines() ); //Quizas esta linea esta demás.
             ps.execute();
+            return true;
         }catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+            return false;
         }
+        
     }
 
     @Override
-    public void DeleteDiet(Connection link ,Diet dieta , int idDelete) {
+    public boolean DeleteDiet(Connection link ,Diet dieta) {
         try{
-            PreparedStatement ps = link.prepareStatement("DELETE FROM dieta WHERE seachID = ? ");
-            ps.setInt(1, idDelete );
+            PreparedStatement ps = link.prepareStatement("DELETE FROM dieta WHERE Nombre = ? ");
+            ps.setString(1, dieta.getNameRoutines());
             ps.execute();
+            return true;
         }catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+            return false;
         }
     }
 
@@ -62,6 +88,7 @@ public class DietToDB implements DietDB {
     @Override
     public ArrayList<Diet> ReadDiets(Connection link) {
         Gson gson=new Gson();
+        ArrayList <Diet> dietasLeer = new ArrayList<>();
         try {
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
 
@@ -83,12 +110,12 @@ public class DietToDB implements DietDB {
                 diet.setTypeRoutine(gson.fromJson(resultSelect.getString("Comida"), type));
 
                 // AGREGAMOS A NUESTRO ARREGLO DE USUARIOS EL CLIENTE SACADO DEL DB
-                dietList.add(diet);
+                dietasLeer.add(diet);
 
             }
 
             // RETORNAMOS LA LISTA DE DIETAS QUE SE GENERÓ
-            return dietList;
+            return dietasLeer;
         }catch (SQLException sqlError){
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlError);
             return null;
@@ -97,8 +124,8 @@ public class DietToDB implements DietDB {
 
     @Override
     public Diet FoundDiet(Connection link, String nombre) {
-        Diet diet=new Diet();
         try {
+            Diet diet=new Diet();
             Type type = new TypeToken<ArrayList<String>>() {}.getType();
             Gson gson=new Gson();
             // SE HACE LA CONEXIÓN A LA BASE DE DATOS
@@ -116,9 +143,10 @@ public class DietToDB implements DietDB {
             return diet;
         } catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+            return null;
+
         }
 
-        return null;
     }
 
     public Diet FoundDietWithID(Connection link, int id) {
@@ -146,4 +174,9 @@ public class DietToDB implements DietDB {
         return null;
     }
 
+
+
+
+
 }
+

@@ -1,17 +1,18 @@
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Operaciones\dbConection.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Controladores\DietToDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\Diet.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\DietDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Vista\Menu.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Controladores\ConnectionToDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Controladores\UserToDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Operaciones\Validacion.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\TypesRoutines.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\Usuario.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\proyectopoo\ProyectoPOO.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\UsuarioDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Controladores\RoutineToDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\RoutineDB.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Modelos\Routine.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Vista\Login.java
-C:\Users\Acer\Documents\codigos\POO\EP3\ProyectoPOO\ProyectoPoo\src\main\java\Vista\PanelControl.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\proyectopoo\ProyectoPOO.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Vista\PanelRutina.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Vista\Menu.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\DietDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Operaciones\ConnectionToDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Controladores\DietToDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\UsuarioDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Vista\PanelUsuario.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\Usuario.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Controladores\RoutineToDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\Diet.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Vista\PanelDieta.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\Routine.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Operaciones\Validacion.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Controladores\UserToDB.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\TypesRoutines.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Vista\Login.java
+V:\Documentos\NetBeansProjects\Proyecto POO DEFINITIVO\ProyectoPoo\src\main\java\Modelos\RoutineDB.java
