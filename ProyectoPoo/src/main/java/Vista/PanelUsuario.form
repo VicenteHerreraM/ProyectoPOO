@@ -185,18 +185,18 @@
                                               <Component id="txtCorreo" alignment="1" min="-2" pref="116" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="LabelContrasenia" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                                                      <Component id="LabelNombre" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace pref="52" max="32767" attributes="0"/>
+                                                      <Component id="txtNombre" min="-2" pref="116" max="-2" attributes="0"/>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="LabelNombre" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="txtNombre" alignment="1" min="-2" pref="116" max="-2" attributes="0"/>
-                                                          <Component id="txtContrasenia" alignment="1" min="-2" pref="116" max="-2" attributes="0"/>
+                                                      <Component id="LabelContrasenia" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="txtApellido" pref="116" max="32767" attributes="0"/>
+                                                          <Component id="txtContrasenia" max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>
-                                                  <Component id="txtApellido" min="-2" pref="116" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -246,8 +246,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="LabelContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtContrasenia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -336,10 +336,11 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Eliminar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtRut">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtContrasenia">
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
             </Component>
@@ -489,7 +490,7 @@
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBuscarMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblMensaje">
@@ -509,6 +510,8 @@
                   <SerializedValue value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,117,116,105,108,46,68,97,116,101,104,106,-127,1,75,89,116,25,3,0,0,120,112,119,8,0,0,1,37,-24,11,-56,64,120"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JPasswordField" name="txtContrasenia">
             </Component>
           </SubComponents>
         </Container>
@@ -599,7 +602,6 @@
                 <Property name="text" type="java.lang.String" value="Cargar"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCargarMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarActionPerformed"/>
               </Events>
             </Component>

@@ -69,6 +69,21 @@ public class PanelUsuario extends javax.swing.JFrame {
         }
 
     }
+    
+    public void cleanInfUser(){
+        txtRut.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtContrasenia.setText("");
+        txtCorreo.setText("");
+        txtPeso.setText("");
+        txtAltura.setText("");
+        cmbRutina.removeAllItems();
+        chargeRoutine();
+        cmbDieta.removeAllItems();
+        chargueDiet();
+        txtFNacimiento.setDate(new Date());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,7 +102,6 @@ public class PanelUsuario extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         txtRut = new javax.swing.JTextField();
-        txtContrasenia = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtAltura = new javax.swing.JTextField();
         txtPeso = new javax.swing.JTextField();
@@ -108,6 +122,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
         txtFNacimiento = new com.toedter.calendar.JDateChooser();
+        txtContrasenia = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -169,6 +184,11 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         btnEliminar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         LabelNombre.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         LabelNombre.setForeground(new java.awt.Color(0, 153, 153));
@@ -212,9 +232,9 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
-        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBuscarMouseClicked(evt);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -267,15 +287,15 @@ public class PanelUsuario extends javax.swing.JFrame {
                                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(LabelContrasenia)
-                                                .addGap(142, 142, 142))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(LabelNombre)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtContrasenia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(LabelContrasenia)
+                                                .addGap(26, 26, 26)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                                                    .addComponent(txtContrasenia))))))
                                 .addGap(131, 131, 131))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnModificar)
@@ -309,8 +329,8 @@ public class PanelUsuario extends javax.swing.JFrame {
                     .addComponent(LabelNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelContrasenia))
+                    .addComponent(LabelContrasenia)
+                    .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,11 +405,6 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         btnCargar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnCargar.setText("Cargar");
-        btnCargar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCargarMouseClicked(evt);
-            }
-        });
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
@@ -430,83 +445,69 @@ public class PanelUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+            Validacion val = new Validacion();
+            UserToDB userToDB = new UserToDB();
+            Usuario usuario = userToDB.FoundUser(link, txtRut.getText());
+            if(usuario!=null){
+                try {
+                    if(val.isValidEmail(txtCorreo.getText())&&
+                            val.isName(txtNombre.getText()) && val.isName(txtApellido.getText())&&
+                            val.isStrongPassword(txtContrasenia.getText())&&
+                            (val.isDouble(txtPeso.getText())>2.0 && val.isDouble(txtPeso.getText())<636)&&
+                            (val.isPositiveInteger(txtAltura.getText())>40 && val.isPositiveInteger(txtAltura.getText())<301)&&
+                            (val.isValidDate(txtFNacimiento.getDate())>15 && val.isValidDate(txtFNacimiento.getDate())<121)){
+                        
+                        
+                        int altura = val.isPositiveInteger(txtAltura.getText());
+                        double peso = val.isDouble(txtPeso.getText());
+                        DietToDB diet = new DietToDB();
+                        RoutineToDB routine = new RoutineToDB();
+                        Diet dieta = diet.FoundDiet(link, cmbDieta.getSelectedItem().toString());
+                        Routine rutina = routine.FoundRoutine(link, cmbRutina.getSelectedItem().toString());
+                        
+                        
+                        usuario.setName(txtNombre.getText());
+                        usuario.setLastName(txtApellido.getText());
+                        usuario.setMail(txtCorreo.getText());
+                        usuario.setPassword(txtContrasenia.getText());
+                        usuario.setHeight(altura);
+                        usuario.setWeight(peso);
+                        usuario.setBirthdate(txtFNacimiento.getDate());
+                        usuario.setTypeDiet(dieta.getIdRoutines());
+                        usuario.setTypeRoutine(rutina.getIdRoutines());
+                        if(userToDB.UpdateUser(link, usuario)){
+                            lblMensaje.setText("DATOS CREADOS SATISFACTORIAMENTE");
+                            cleanInfUser();
+                        }else{
+                            lblMensaje.setText("VALIDE SUS DATOS POR FAVOR");
+                        }
+                    }       } catch (ParseException ex) {
+                    Logger.getLogger(PanelUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) throws ParseException {//GEN-FIRST:event_btnCrearActionPerformed
         Usuario consultaUser = new Usuario();
         UserToDB user = new UserToDB();
         Validacion val = new Validacion();
-        if(!val.validarRUT(txtRut.getText())){
-            if(txtRut.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null, "INGRESE UN RUT\nINGRESA UN RUT\nejemplo: 11222333-4", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "RUT NO VALIDO\nejemplo: 11222333-4", "Error", JOptionPane.ERROR_MESSAGE);
-
-            }
-        }
-        if(!val.isValidEmail(txtCorreo.getText())) {
-            if(txtCorreo.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(null, "INGRESE UN CORREO\nINGRESA UN CORREO", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "EMAIL NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
-
-            }
-        }
-        if(!val.isName(txtNombre.getText())){
-            if(txtNombre.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "INGRESE UN NOMBRE", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "NOMBRE NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        if(!val.isName(txtApellido.getText())){
-            if(txtApellido.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "INGRESE UN APELLIDO", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "APELLIDO NO VÁLIDO", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        if(!val.isStrongPassword(txtContrasenia.getText())){
-            if(txtContrasenia.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "INGRESE UNA CONTRASEÑA", "Error", JOptionPane.ERROR_MESSAGE);
-            }else if(txtContrasenia.getText().length()<12){
-                JOptionPane.showMessageDialog(null, "CONTRASEÑA DEMASIADO CORTA", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (txtContrasenia.getText().length()>12) {
-                JOptionPane.showMessageDialog(null, "CONTRASEÑA DEMASIADO LARGA", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "CONTRASEÑA NO VÁLIDA\nDebe tener letra, número y caracteres especiales", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        if(val.isDouble(txtPeso.getText())<=0){
-            if(txtPeso.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "INGRESE UN PESO", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "PESO NO VÁLIDO\ningrese un peso mayor a 0 y en formato de kg: 11,11 ó 11.11", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        if(val.isPositiveInteger(txtAltura.getText())<=0){
-            if(txtAltura.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "INGRESE UNA ALTURA", "Error", JOptionPane.ERROR_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "ALTURA NO VÁLIDA\ningrese una altura mayor a 0 y en formato de cm: 123", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        if(val.isValidDate(txtFNacimiento.getDate())<16) {
-            JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
         
-        if(val.validarRUT(txtRut.getText())&&val.isValidEmail(txtCorreo.getText())&&val.isName(txtNombre.getText())&&val.isName(txtApellido.getText())
-                &&val.isStrongPassword(txtContrasenia.getText())&&val.isDouble(txtPeso.getText())>0&&val.isPositiveInteger(txtAltura.getText())>0
-                &&val.isValidDate(txtFNacimiento.getDate())>15){
+        if(val.validarRUT(txtRut.getText()) && val.isValidEmail(txtCorreo.getText())&&
+                val.isName(txtNombre.getText()) && val.isName(txtApellido.getText())&&
+                val.isStrongPassword(txtContrasenia.getText())&&
+                (val.isDouble(txtPeso.getText())>2.0 && val.isDouble(txtPeso.getText())<636)&&
+                (val.isPositiveInteger(txtAltura.getText())>40 && val.isPositiveInteger(txtAltura.getText())<301)&&
+                (val.isValidDate(txtFNacimiento.getDate())>15 && val.isValidDate(txtFNacimiento.getDate())<121)){
+            
+            
             int altura = val.isPositiveInteger(txtAltura.getText());
             double peso = val.isDouble(txtPeso.getText());
             DietToDB diet = new DietToDB();
             RoutineToDB routine = new RoutineToDB();
             Diet dieta = diet.FoundDiet(link, cmbDieta.getSelectedItem().toString());
             Routine rutina = routine.FoundRoutine(link, cmbRutina.getSelectedItem().toString());  
+            
+            
             consultaUser.setName(txtNombre.getText());
             consultaUser.setLastName(txtApellido.getText());
             consultaUser.setMail(txtCorreo.getText());
@@ -518,21 +519,10 @@ public class PanelUsuario extends javax.swing.JFrame {
             consultaUser.setTypeDiet(dieta.getIdRoutines());
             consultaUser.setTypeRoutine(rutina.getIdRoutines());
             if(user.CreateUser(link, consultaUser)){
-                lblMensaje.setText("Datos Creados!");
-                txtRut.setText("");
-                txtNombre.setText("");
-                txtApellido.setText("");
-                txtContrasenia.setText("");
-                txtCorreo.setText("");
-                txtPeso.setText("");
-                txtAltura.setText("");
-                cmbRutina.removeAllItems();
-                chargeRoutine();
-                cmbDieta.removeAllItems();
-                chargueDiet();
-                txtFNacimiento.setDate(new Date());
+                lblMensaje.setText("DATOS CREADOS SATISFACTORIAMENTE");
+                cleanInfUser();
             }else{
-                lblMensaje.setText("HA OCURRIDO UN ERROR AL MOMENTO DE CREAR, VALIDE SUS DATOS POR FAVOR");
+                lblMensaje.setText("VALIDE SUS DATOS POR FAVOR");
             }
         }
         
@@ -542,7 +532,15 @@ public class PanelUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+    private void cmbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbDietaActionPerformed
+
+    private void cmbRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbRutinaActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         UserToDB user = new UserToDB();
         Usuario consultaUser = new Usuario();
         
@@ -562,33 +560,6 @@ public class PanelUsuario extends javax.swing.JFrame {
         Routine rutina = routineToDB.FoundRoutineWithID(link, consultaUser.getTypeRoutine());
         cmbDieta.setSelectedItem(dieta.getNameRoutines());
         cmbRutina.setSelectedItem(rutina.getNameRoutines());
-    }//GEN-LAST:event_btnBuscarMouseClicked
-
-    private void btnCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarMouseClicked
-        UserToDB user = new UserToDB();
-        
-        ArrayList<Usuario>Lista=new ArrayList<Usuario>();
-        Lista = user.PrintUsers(link);
-        
-        Object[] row = {Lista.get(0).getRut(), Lista.get(0).getName(), Lista.get(0).getLastName()};
-        DefaultTableModel model = (DefaultTableModel) tblUsuarios.getModel();
-        model.insertRow(0, row);
-        
-        
-        
-        
-    }//GEN-LAST:event_btnCargarMouseClicked
-
-    private void cmbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDietaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDietaActionPerformed
-
-    private void cmbRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRutinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRutinaActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
@@ -601,7 +572,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         usuarios = userToDB.PrintUsers(link);
         DietToDB dietToDB = new DietToDB();
         RoutineToDB routineToDB = new RoutineToDB();
-        
+
         for(Usuario usuario: usuarios){
             Object[] dato = new Object[9];
             dato[0] = usuario.getRut();
@@ -618,6 +589,22 @@ public class PanelUsuario extends javax.swing.JFrame {
             modeloTabla.addRow(dato);
         }
     }//GEN-LAST:event_btnCargarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        UserToDB userToDB = new UserToDB();
+        Usuario usuario = userToDB.FoundUser(link, txtRut.getText());
+        if(usuario!=null){
+            int answer = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el usuario?", "Confirmación", JOptionPane.YES_NO_OPTION);
+
+            if (answer == JOptionPane.YES_OPTION) {
+              userToDB.DeleteUser(link, usuario);
+                lblMensaje.setText("DATOS ELIMINADOS");
+            }else{
+                lblMensaje.setText("CANCELADO");
+
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -685,7 +672,7 @@ public class PanelUsuario extends javax.swing.JFrame {
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtAltura;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCorreo;
     private com.toedter.calendar.JDateChooser txtFNacimiento;
     private javax.swing.JTextField txtNombre;

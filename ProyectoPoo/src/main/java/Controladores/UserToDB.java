@@ -38,32 +38,36 @@ public class UserToDB implements UsuarioDB{
         return false;
     }
 
+ 
     @Override
-    public void UpdateUser(Connection link, Usuario user , String rutUpdate) {
+    public boolean UpdateUser(Connection link, Usuario user) {
         try{
-            PreparedStatement ps = link.prepareStatement("UPDATE cliente SET(RUT = ?,Nombre = ?,Apellido = ?,Altura = ?,Peso = ?,Contraseña = ?,Correo = ?,FechaNac = ?,dietaCliente = ?,rutinaCliente = ?) WHERE rutUpdate = ?");
-            ps.setString(1, user.getRut());
-            ps.setString(2, user.getName());
-            ps.setString(3, user.getLastName());
-            ps.setInt(4, user.getHeight());
-            ps.setDouble(5, user.getWeight());
-            ps.setString(6, user.getPassword());
-            ps.setString(7,  user.getMail());
-            ps.setDate(8, (Date) user.getBirthdate());
-            ps.setInt(9, user.getTypeDiet());
-            ps.setInt(10, user.getTypeRoutine());
+            PreparedStatement ps = link.prepareStatement("UPDATE cliente SET Nombre = ?,Apellido = ?,Altura = ?,Peso = ?,Contrasenya = ?,Correo = ?,FechaNac = ?,dietaCliente = ?,rutinaCliente = ? WHERE RUT = '"+user.getRut()+"'");
+            
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getLastName());
+            ps.setInt(3, user.getHeight());
+            ps.setDouble(4, user.getWeight());
+            ps.setString(5, user.getPassword());
+            ps.setString(6,  user.getMail());
+            java.sql.Date sqlDate = new java.sql.Date (user.getBirthdate().getTime());
+            ps.setDate(7, sqlDate);
+            ps.setInt(8, user.getTypeDiet());
+            ps.setInt(9, user.getTypeRoutine());
             ps.execute();
-
+            return true;
         }catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+            return false;
         }
     }
 
+
     @Override
-    public void DeleteUser(Connection link, Usuario user , String rutDelete) {
+    public void DeleteUser(Connection link, Usuario user) {
         try{
-            PreparedStatement ps = link.prepareStatement("DELETE cliente FROM rutDelete= ?");
-            ps.setString(1, rutDelete);
+            PreparedStatement ps = link.prepareStatement("DELETE FROM cliente WHERE RUT= ?");
+            ps.setString(1, user.getRut());
             ps.execute();
 
         }catch (SQLException sqlExcept) {
