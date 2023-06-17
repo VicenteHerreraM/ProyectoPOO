@@ -73,27 +73,28 @@ public class UserToDB implements UsuarioDB{
 
     @Override
     public ArrayList<Usuario> PrintUsers(Connection link) {
-        Usuario user=new Usuario();
+        ArrayList<Usuario>usuariosLeer = new ArrayList<>();
+
         try {
 
             // CREAMOS CONEXIÓN A LA BASE DE DATOS
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA CLIENTE)
-            query = "SELECT * FROM cliente";
+            query = "SELECT * FROM `cliente`";
 
-            //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
+            //GUARDAMOS EL RESULTADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
 
             // LEEMOS HASTA QUE ENCONTREMOS UN NULL EN LA FILA
             while (resultSelect.next()) {
-
+                Usuario user=new Usuario();
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
                 user.setRut(resultSelect.getString("RUT"));
                 user.setName(resultSelect.getString("Nombre"));
                 user.setLastName(resultSelect.getString("Apellido"));
                 user.setHeight(resultSelect.getInt("Altura"));
-                user.setWeight(resultSelect.getFloat("Peso"));
+                user.setWeight(resultSelect.getDouble("Peso"));
                 user.setPassword(resultSelect.getString("Contrasenya"));
                 user.setMail(resultSelect.getString("Correo"));
                 user.setBirthdate(resultSelect.getDate("FechaNac"));
@@ -101,15 +102,14 @@ public class UserToDB implements UsuarioDB{
                 user.setTypeRoutine(resultSelect.getInt("rutinaCliente"));
 
                 // AGREGAMOS A NUESTRO ARREGLO DE USUARIOS EL CLIENTE SACADO DEL DB
-                users.add(user);
-
+                usuariosLeer.add(user);
             }
 
             // RETORNAMOS LA LISTA DE USUARIOS QUE SE GENERÓ
-            return users;
+            return usuariosLeer;
         }catch (SQLException sqlError){
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlError);
-            return null;
+            return usuariosLeer;
         }
     }
 

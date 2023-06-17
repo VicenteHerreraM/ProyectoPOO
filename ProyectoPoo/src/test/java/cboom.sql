@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-06-2023 a las 16:31:22
+-- Tiempo de generación: 17-06-2023 a las 07:48:57
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -46,11 +46,17 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`RUT`, `Nombre`, `Apellido`, `Altura`, `Peso`, `Contrasenya`, `Correo`, `FechaNac`, `dietaCliente`, `rutinaCliente`) VALUES
 ('0000000-1', 'ISABEL', 'II', 174, 65.00, 'password', 'princesaMisifu@gmail.com', '1926-04-21', 3, 1),
+('10936162-3', 'RICARDO', 'SOTO', 175, 76.00, 'R1ch4r$$$$$$', 'ricardosoto@gmail.com', '1970-06-29', 7, 6),
 ('11222333-1', 'DORIAN', 'CANALES', 180, 65.00, 'AAaa1122..,,', 'xXxdOrIaNxXx@yahoo.com', '2002-02-06', 2, 1),
 ('1249535-3', 'ADOLF', 'MALITO', 174, 72.00, 'PazyArmonia100%', 'adolfitoUwU@outlook.com', '1889-04-20', 3, 4),
+('13395180-6', 'DANIEL', 'CARRASCO', 156, 60.00, '1234567890Aa#', 'dani@gmail.com', '2000-06-14', 1, 6),
+('20483861-5', 'Vicente', 'Herrera', 175, 78.00, 'AAaa1122##$$', 'vicenteVicens1@hotmail.com', '2000-09-05', 7, 4),
+('20484286-8', 'PPITO', 'LOPEZ', 175, 65.00, '1234567899Aa#', 'pepito@gmail.com', '2000-10-06', 5, 2),
+('20963471-6', 'Dorian', 'Canales', 180, 70.00, 'AAaa1122##$$', 'doriancanales0602@gmail.com', '2002-02-06', 2, 1),
 ('22333444-2', 'IGNACIO', 'VILLALOBOS', 175, 70.00, 'C0l0-C0l0Campeon', 'nachoBnBellako@gmail.com', '2000-06-23', 6, 1),
+('24834529-2', 'RAMIRO', 'RAMIREZ', 123, 676.00, '1234567890Aa#$', 'ramirito@gmail.com', '1990-10-17', 8, 4),
 ('33444555-3', 'VICENTE', 'HERRERA', 172, 75.00, 'Ser0noSer.', 'v1c3nt3cr4ck@hotmail.com', '2000-09-05', 5, 5),
-('44555666-4', 'JESÚS', 'DE NAZARETH', 170, 70.00, 'DiosMiS4lv4dor!', 'jesusBnBellako@hotmail.com', '0000-01-01', 7, 2);
+('44555666-4', 'JESÚS', 'DE NAZARETH', 170, 70.00, 'DiosMiS4lv4dor!', 'jesusBnBellako@hotmail.com', '1893-01-01', 7, 2);
 
 -- --------------------------------------------------------
 

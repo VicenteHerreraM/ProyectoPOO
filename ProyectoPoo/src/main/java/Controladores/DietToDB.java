@@ -121,5 +121,29 @@ public class DietToDB implements DietDB {
         return null;
     }
 
+    public Diet FoundDietWithID(Connection link, int id) {
+        Diet diet=new Diet();
+        try {
+            Type type = new TypeToken<ArrayList<String>>() {}.getType();
+            Gson gson=new Gson();
+            // SE HACE LA CONEXIÓN A LA BASE DE DATOS
+            Statement state = link.createStatement();
+            // HACEMOS LA CONSULTA A LA BASE DE DATOS
+            query="SELECT * FROM dieta WHERE ID_Dieta='"+id+"'";
+            ResultSet resultSets=state.executeQuery(query);
+            // RESULTADOS
+            while (resultSets.next()){
+                // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
+                diet.setIdRoutines(resultSets.getInt("ID_Dieta"));
+                diet.setNameRoutines(resultSets.getString("Nombre"));
+                diet.setTypeRoutine(gson.fromJson(resultSets.getString("Comida"), type));
+            }
+            return diet;
+        } catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
+
+        return null;
+    }
 
 }

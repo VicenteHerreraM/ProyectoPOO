@@ -51,22 +51,22 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tablaDatosUsuario">
+            <Component class="javax.swing.JTable" name="tblUsuarios">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Bookman Old Style" size="12" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="4">
-                    <Column editable="true" title="Rut" type="java.lang.String"/>
-                    <Column editable="true" title="Nombre" type="java.lang.String"/>
-                    <Column editable="true" title="Apellido" type="java.lang.String"/>
-                    <Column editable="true" title="Altura" type="java.lang.Integer"/>
-                    <Column editable="true" title="Peso" type="java.lang.Double"/>
-                    <Column editable="true" title="Correo" type="java.lang.String"/>
-                    <Column editable="true" title="Edad" type="java.lang.Integer"/>
-                    <Column editable="true" title="Dieta" type="java.lang.String"/>
-                    <Column editable="true" title="Rutina" type="java.lang.String"/>
+                  <Table columnCount="9" rowCount="0">
+                    <Column editable="false" title="Rut" type="java.lang.String"/>
+                    <Column editable="false" title="Nombre" type="java.lang.String"/>
+                    <Column editable="false" title="Apellido" type="java.lang.String"/>
+                    <Column editable="false" title="Altura" type="java.lang.Integer"/>
+                    <Column editable="false" title="Peso" type="java.lang.Double"/>
+                    <Column editable="false" title="Correo" type="java.lang.String"/>
+                    <Column editable="false" title="FNacimiento" type="java.lang.String"/>
+                    <Column editable="false" title="Dieta" type="java.lang.String"/>
+                    <Column editable="false" title="Rutina" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -600,6 +600,7 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCargarMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCargarActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

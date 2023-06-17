@@ -9,10 +9,15 @@ import Modelos.Usuario;
 import Modelos.Diet;
 import Modelos.Routine;
 import Operaciones.*;
+import com.toedter.calendar.JCalendar;
+
 import java.sql.Connection;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -76,7 +81,7 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         BD = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaDatosUsuario = new javax.swing.JTable();
+        tblUsuarios = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         btnModificar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
@@ -112,27 +117,31 @@ public class PanelUsuario extends javax.swing.JFrame {
 
         BD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaDatosUsuario.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
-        tablaDatosUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuarios.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Rut", "Nombre", "Apellido", "Altura", "Peso", "Correo", "Edad", "Dieta", "Rutina"
+                "Rut", "Nombre", "Apellido", "Altura", "Peso", "Correo", "FNacimiento", "Dieta", "Rutina"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(tablaDatosUsuario);
+        jScrollPane1.setViewportView(tblUsuarios);
 
         BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 380));
 
@@ -381,6 +390,11 @@ public class PanelUsuario extends javax.swing.JFrame {
                 btnCargarMouseClicked(evt);
             }
         });
+        btnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -513,8 +527,10 @@ public class PanelUsuario extends javax.swing.JFrame {
                 txtPeso.setText("");
                 txtAltura.setText("");
                 cmbRutina.removeAllItems();
+                chargeRoutine();
                 cmbDieta.removeAllItems();
-                txtFNacimiento.cleanup();
+                chargueDiet();
+                txtFNacimiento.setDate(new Date());
             }else{
                 lblMensaje.setText("HA OCURRIDO UN ERROR AL MOMENTO DE CREAR, VALIDE SUS DATOS POR FAVOR");
             }
@@ -527,22 +543,25 @@ public class PanelUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        //ConnectionToDB connection = new ConnectionToDB();
-        //Connection link = connection.getConnection();
         UserToDB user = new UserToDB();
         Usuario consultaUser = new Usuario();
-        
         
         consultaUser = user.FoundUser(link, txtRut.getText());
         
         txtRut.setText(consultaUser.getRut());
         txtNombre.setText(consultaUser.getName());
+        txtContrasenia.setText(consultaUser.getPassword());
         txtApellido.setText(consultaUser.getLastName());
         txtCorreo.setText(consultaUser.getMail());
-        // txtAltura.setText(consultaUser.getHeight());
-        //txtPeso.setText(consultaUser.getWeight());
-        //txtEdad.setText(consultaUser.getBirthdate());
-        
+        txtAltura.setText(String.valueOf(consultaUser.getHeight()));
+        txtPeso.setText(String.valueOf(consultaUser.getWeight()));
+        txtFNacimiento.setDate(consultaUser.getBirthdate());
+        DietToDB dietToDB = new DietToDB();
+        Diet dieta = dietToDB.FoundDietWithID(link,consultaUser.getTypeDiet());
+        RoutineToDB routineToDB = new RoutineToDB();
+        Routine rutina = routineToDB.FoundRoutineWithID(link, consultaUser.getTypeRoutine());
+        cmbDieta.setSelectedItem(dieta.getNameRoutines());
+        cmbRutina.setSelectedItem(rutina.getNameRoutines());
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void btnCargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCargarMouseClicked
@@ -552,7 +571,7 @@ public class PanelUsuario extends javax.swing.JFrame {
         Lista = user.PrintUsers(link);
         
         Object[] row = {Lista.get(0).getRut(), Lista.get(0).getName(), Lista.get(0).getLastName()};
-        DefaultTableModel model = (DefaultTableModel) tablaDatosUsuario.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblUsuarios.getModel();
         model.insertRow(0, row);
         
         
@@ -571,6 +590,34 @@ public class PanelUsuario extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblUsuarios.getModel();
+        modeloTabla.setRowCount(0);
+        String formato = "dd-MM-yyyy";
+        DateFormat df = new SimpleDateFormat(formato);
+        ArrayList<Usuario>usuarios=new ArrayList<>();
+        UserToDB userToDB = new UserToDB();
+        usuarios = userToDB.PrintUsers(link);
+        DietToDB dietToDB = new DietToDB();
+        RoutineToDB routineToDB = new RoutineToDB();
+        
+        for(Usuario usuario: usuarios){
+            Object[] dato = new Object[9];
+            dato[0] = usuario.getRut();
+            dato[1] = usuario.getName();
+            dato[2] = usuario.getLastName();
+            dato[3] = usuario.getHeight();
+            dato[4] = usuario.getWeight();
+            dato[5] = usuario.getMail();
+            dato[6] = df.format(usuario.getBirthdate());
+            Diet dieta = dietToDB.FoundDietWithID(link,usuario.getTypeDiet());
+            dato[7] = dieta.getNameRoutines();
+            Routine rutina = routineToDB.FoundRoutineWithID(link, usuario.getTypeRoutine());
+            dato[8] = rutina.getNameRoutines();
+            modeloTabla.addRow(dato);
+        }
+    }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,7 +682,7 @@ public class PanelUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMensaje;
-    private javax.swing.JTable tablaDatosUsuario;
+    private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtAltura;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtContrasenia;
