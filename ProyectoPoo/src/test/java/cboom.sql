@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-06-2023 a las 18:46:17
+-- Tiempo de generación: 18-06-2023 a las 21:21:46
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,7 +79,15 @@ INSERT INTO `dieta` (`ID_Dieta`, `Nombre`, `Comida`) VALUES
 (5, 'Baja en grasas', '[\"Salmón al horno con arroz integral\",\"Tortilla de huevo con espinacas, cebolla y pimiento\"]'),
 (6, 'Cetogénica', '[\"Huevos revueltos con aguacate y tocino\",\"Hamburguesa con queso cheddar, lechuga y aguacate\"]'),
 (7, 'Paleo', '[\"Ensalada de pollo a la parrilla con aguacate, tomate y lechuga\",\"Tortilla de huevo con espinacas y champiñones\"]'),
-(8, 'Estándar', '[\"Pan con queso\",\"Fideos con salsa de tomate y carne molida\"]');
+(8, 'Estándar', '[\"Pan con queso\",\"Fideos con salsa de tomate y carne molida\"]'),
+(11, 'Fosintesis', '[\"Fosintesis\"]'),
+(13, 'fotosinsdfl', '[\"fotosinsdfl\"]'),
+(14, 'dfglkxcjvkl', '[\"lvkcsv;kjk\",\"sdlkfjsklf\",\"lksjkvcb\"]'),
+(15, 'asdklfksadj', '[\"lkjfdklsdj\",\"sdklfjsad\",\"sadflkjasdf\"]'),
+(17, 'klfjsdklfjkgd', '[\"dlkjfkdgdflj\",\"sdkljfsd\",\"xcvx\",\"bvccvnls\"]'),
+(18, 'sdjfsjkafjhsdj', '[\"jjsndljf\",\"sdlfkjsa\",\"fslkvjmcx\",\"sd\"]'),
+(19, 'sadfjksdfjk', '[\"\"]'),
+(20, 'jcxklxbklne', '[\"\"]');
 
 -- --------------------------------------------------------
 
@@ -100,8 +108,7 @@ CREATE TABLE `rutina` (
 INSERT INTO `rutina` (`ID_Rutina`, `Nombre_Rutina`, `Ejercicio`) VALUES
 (1, 'Full Body', '[\"Sentadilla 15x3\",\"Press de banca 12x4\",\"Crunch 20x5\"]'),
 (2, 'Empuje-Jalón', '[\"Press de banca 12x4\",\"Paralelas 10x3\",\"Aperturas con polea 8x5\"]'),
-(3, 'Torso-Pierna', '[\"Sentadillas 15x5\",\"Crunch 20x5\",\"Zancadas 20x4\"]'),
-(4, 'HITT', '[\"Burpee 2 min\",\"Sentadilla 1 min 30 sec\",\"Crunch 2 min 30 sec\"]'),
+(4, 'HITT', '[\"sdfsadf\",\"sadf\",\"sadfsda\",\"kk\"]'),
 (5, 'Cardio', '[\"Sentadilla 15x3\",\"Burpee 15x4\",\"Bicicleta Estática 10 min\"]'),
 (6, 'Estándar', '[\"Flexiones 15x4\",\"Sentadillas 20x5\",\"Plancha 1 min\"]');
 
@@ -115,7 +122,8 @@ INSERT INTO `rutina` (`ID_Rutina`, `Nombre_Rutina`, `Ejercicio`) VALUES
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`RUT`),
   ADD KEY `idx_idRutina` (`rutinaCliente`),
-  ADD KEY `idx_idDieta` (`dietaCliente`) USING BTREE;
+  ADD KEY `idx_idDieta` (`dietaCliente`) USING BTREE,
+  ADD KEY `rutinaCliente` (`rutinaCliente`);
 
 --
 -- Indices de la tabla `dieta`
@@ -137,7 +145,13 @@ ALTER TABLE `rutina`
 -- AUTO_INCREMENT de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  MODIFY `ID_Dieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID_Dieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `rutina`
+--
+ALTER TABLE `rutina`
+  MODIFY `ID_Rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas
