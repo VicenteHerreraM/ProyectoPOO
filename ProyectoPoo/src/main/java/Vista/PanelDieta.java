@@ -79,6 +79,7 @@ public class PanelDieta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        BD.setBackground(new java.awt.Color(22, 36, 71));
         BD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(22, 36, 71));
@@ -125,8 +126,10 @@ public class PanelDieta extends javax.swing.JFrame {
         txtComidas.setRows(5);
         jScrollPane2.setViewportView(txtComidas);
 
-        lblMensaje.setText("jLabel2");
+        lblMensaje.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
+        lblMensaje.setForeground(new java.awt.Color(255, 0, 51));
 
+        btnBuscar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +158,8 @@ public class PanelDieta extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnModificar)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -164,11 +168,8 @@ public class PanelDieta extends javax.swing.JFrame {
                                 .addGap(46, 46, 46)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCrear)
-                                    .addComponent(btnEliminar))
-                                .addGap(36, 36, 36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80))))))
+                                    .addComponent(btnEliminar))))
+                        .addGap(24, 24, 24))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,9 +194,9 @@ public class PanelDieta extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(46, 46, 46))
         );
 
         BD.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 300, 500));
@@ -226,7 +227,7 @@ public class PanelDieta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDietas);
 
-        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 360));
+        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 370));
 
         jPanel1.setBackground(new java.awt.Color(22, 36, 71));
 
@@ -253,6 +254,7 @@ public class PanelDieta extends javax.swing.JFrame {
 
         BD.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 60));
 
+        btnCargar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnCargar.setText("Cargar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

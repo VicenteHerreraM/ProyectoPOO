@@ -35,13 +35,7 @@ public class ConnectionToDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             link = DriverManager.getConnection(this.URL, this.userLog, this.passwordLog);
-            System.out.println("""
-                    .....................................................
-                    :                                                   :
-                    :   ¡ESTABLECIENDO CONEXION A LA BASE DE DATOS!     :
-                    :                                                   :
-                    .....................................................
-                    """);
+            
 
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, exception);

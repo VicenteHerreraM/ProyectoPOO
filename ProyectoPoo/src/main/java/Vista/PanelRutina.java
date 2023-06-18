@@ -72,6 +72,7 @@ public class PanelRutina extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        BD.setBackground(new java.awt.Color(22, 36, 71));
         BD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblRutinas.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
@@ -83,7 +84,7 @@ public class PanelRutina extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Nombre", "Tipo"
+                "Nombre", "Ejercicio"
             }
         ) {
             Class[] types = new Class [] {
@@ -96,7 +97,7 @@ public class PanelRutina extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblRutinas);
 
-        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 380));
+        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 370));
 
         jPanel2.setBackground(new java.awt.Color(22, 36, 71));
 
@@ -142,8 +143,10 @@ public class PanelRutina extends javax.swing.JFrame {
         txtEjercicio.setRows(5);
         jScrollPane2.setViewportView(txtEjercicio);
 
-        lblMensaje.setText("jLabel4");
+        lblMensaje.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
+        lblMensaje.setForeground(new java.awt.Color(255, 0, 51));
 
+        btnBuscar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +162,15 @@ public class PanelRutina extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(338, 338, 338))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(78, 78, 78)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,18 +184,7 @@ public class PanelRutina extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCrear)
                                     .addComponent(btnEliminar))))
-                        .addGap(166, 166, 166))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(338, 338, 338))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(155, 155, 155))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +193,7 @@ public class PanelRutina extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
+                .addContainerGap(147, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNombreRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -209,9 +209,9 @@ public class PanelRutina extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(25, 25, 25))
         );
 
         BD.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 300, 500));
@@ -241,13 +241,14 @@ public class PanelRutina extends javax.swing.JFrame {
 
         BD.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 60));
 
+        btnCargar.setFont(new java.awt.Font("Bookman Old Style", 1, 12)); // NOI18N
         btnCargar.setText("Cargar");
         btnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCargarActionPerformed(evt);
             }
         });
-        BD.add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, -1, -1));
+        BD.add(btnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
