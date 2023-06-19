@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2023 a las 21:21:46
+-- Tiempo de generación: 19-06-2023 a las 19:05:50
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,15 +79,7 @@ INSERT INTO `dieta` (`ID_Dieta`, `Nombre`, `Comida`) VALUES
 (5, 'Baja en grasas', '[\"Salmón al horno con arroz integral\",\"Tortilla de huevo con espinacas, cebolla y pimiento\"]'),
 (6, 'Cetogénica', '[\"Huevos revueltos con aguacate y tocino\",\"Hamburguesa con queso cheddar, lechuga y aguacate\"]'),
 (7, 'Paleo', '[\"Ensalada de pollo a la parrilla con aguacate, tomate y lechuga\",\"Tortilla de huevo con espinacas y champiñones\"]'),
-(8, 'Estándar', '[\"Pan con queso\",\"Fideos con salsa de tomate y carne molida\"]'),
-(11, 'Fosintesis', '[\"Fosintesis\"]'),
-(13, 'fotosinsdfl', '[\"fotosinsdfl\"]'),
-(14, 'dfglkxcjvkl', '[\"lvkcsv;kjk\",\"sdlkfjsklf\",\"lksjkvcb\"]'),
-(15, 'asdklfksadj', '[\"lkjfdklsdj\",\"sdklfjsad\",\"sadflkjasdf\"]'),
-(17, 'klfjsdklfjkgd', '[\"dlkjfkdgdflj\",\"sdkljfsd\",\"xcvx\",\"bvccvnls\"]'),
-(18, 'sdjfsjkafjhsdj', '[\"jjsndljf\",\"sdlfkjsa\",\"fslkvjmcx\",\"sd\"]'),
-(19, 'sadfjksdfjk', '[\"\"]'),
-(20, 'jcxklxbklne', '[\"\"]');
+(8, 'Estándar', '[\"Pan con queso\",\"Fideos con salsa de tomate y carne molida\"]');
 
 -- --------------------------------------------------------
 
