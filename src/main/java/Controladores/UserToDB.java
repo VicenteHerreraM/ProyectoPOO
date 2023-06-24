@@ -120,6 +120,7 @@ public class UserToDB implements UsuarioDB{
     @Override
     public Usuario FoundUser(Connection link, String rut) {
         Usuario user=new Usuario();
+        int cont=0;
         try {
             Statement state = link.createStatement();
             query="SELECT * FROM cliente WHERE RUT='"+rut+"'";
@@ -128,6 +129,7 @@ public class UserToDB implements UsuarioDB{
 
 
             while (resultSets.next()){
+                cont++;
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
                 user.setRut(resultSets.getString("RUT"));
                 user.setName(resultSets.getString("Nombre"));
@@ -140,7 +142,11 @@ public class UserToDB implements UsuarioDB{
                 user.setTypeDiet(resultSets.getInt("dietaCliente"));
                 user.setTypeRoutine(resultSets.getInt("rutinaCliente"));
             }
-            return user;
+            if(cont>0){
+                return user;
+            }else{
+                return null;
+            }
         } catch (SQLException sqlExcept) {
             Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
         }

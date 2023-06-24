@@ -26,16 +26,12 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fondo = new java.awt.Panel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuUsuarios = new javax.swing.JMenu();
         menuDietas = new javax.swing.JMenu();
         menuRutinas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        fondo.setBackground(new java.awt.Color(27, 27, 47));
-        fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jMenuBar1.setBackground(new java.awt.Color(22, 36, 71));
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -72,11 +68,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGap(0, 1150, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .addGap(0, 623, Short.MAX_VALUE)
         );
 
         pack();
@@ -84,19 +80,45 @@ public class Menu extends javax.swing.JFrame {
 
     private void menuUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuUsuariosMouseClicked
         
-        PanelUsuario panelUsuario = new PanelUsuario();
-        panelUsuario.setVisible(true);
+        //PanelUsuario panelUsuario = new PanelUsuario();
+        //panelUsuario.setVisible(true);
+        
+        InternalUsuario Usuario = new InternalUsuario();
+        Usuario.setVisible(true);
+        this.add(Usuario);
+        
+        try {
+           Usuario.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
         
     }//GEN-LAST:event_menuUsuariosMouseClicked
 
     private void menuDietasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDietasMouseClicked
-        PanelDieta panelDieta = new PanelDieta();
-        panelDieta.setVisible(true);
+        //PanelDieta panelDieta = new PanelDieta();
+        //panelDieta.setVisible(true);
+        
+        InternalDieta dieta = new InternalDieta();
+        dieta.setVisible(true);
+        this.add(dieta);
+        
+        try {
+           dieta.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+        
     }//GEN-LAST:event_menuDietasMouseClicked
 
     private void menuRutinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuRutinasMouseClicked
-        PanelRutina panelRutina = new PanelRutina();
-        panelRutina.setVisible(true);
+        //PanelRutina panelRutina = new PanelRutina();
+        //panelRutina.setVisible(true);
+        InternalRutina rutina = new InternalRutina();
+        rutina.setVisible(true);
+        this.add(rutina);
+        
+        try {
+           rutina.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {}
+        
+        
     }//GEN-LAST:event_menuRutinasMouseClicked
 
     /**
@@ -135,7 +157,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Panel fondo;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuDietas;
     private javax.swing.JMenu menuRutinas;
