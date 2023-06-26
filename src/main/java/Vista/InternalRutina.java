@@ -71,13 +71,9 @@ public class InternalRutina extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         btnCargar = new javax.swing.JButton();
 
-<<<<<<< HEAD
         setBackground(new java.awt.Color(22, 36, 71));
         setClosable(true);
         setMaximizable(true);
-=======
-        setClosable(true);
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         setResizable(true);
 
         BD.setBackground(new java.awt.Color(22, 36, 71));
@@ -109,15 +105,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
 
         jPanel2.setBackground(new java.awt.Color(22, 36, 71));
 
-<<<<<<< HEAD
-=======
-        txtNombreRutina.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreRutinaActionPerformed(evt);
-            }
-        });
-
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Nombre ");
@@ -170,7 +157,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -202,39 +188,10 @@ public class InternalRutina extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
-=======
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(338, 338, 338))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombreRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnModificar)
-                                    .addComponent(btnBuscar))
-                                .addGap(46, 46, 46)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnCrear)
-                                    .addComponent(btnEliminar))))
-                        .addGap(155, 155, 155))))
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(163, 163, 163)
@@ -258,29 +215,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
                             .addComponent(btnModificar)
                             .addComponent(btnEliminar))
                         .addGap(27, 27, 27)))
-=======
-                .addGap(163, 163, 163)
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombreRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrear)
-                    .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificar)
-                    .addComponent(btnEliminar))
-                .addGap(27, 27, 27)
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
                 .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -335,111 +269,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-=======
-    private void txtNombreRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreRutinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreRutinaActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-        RoutineToDB rutinaToDB = new RoutineToDB();
-        Routine rutina = rutinaToDB.FoundRoutine(link, txtNombreRutina.getText());
-        try {
-            if(rutinaToDB.contarRutinas(link, txtNombreRutina.getText()) > 0){
-                String nombre = txtNombreRutina.getText();
-                ArrayList<String> ejercicios = new ArrayList();
-                String[] StringEjercicios = txtEjercicio.getText().split("\\n");
-                for(String ejercicio : StringEjercicios){
-
-                    ejercicios.add(ejercicio);
-                }
-
-                if(ejercicios.size() > 1){
-                    //Verificar que el nombre no se repita
-                    rutina.setNameRoutines(nombre);
-                    //Verificar que haya almenos una comida en el arreglo de comidas ingresadas
-                    rutina.setTypeRoutine(ejercicios);
-                    if(rutinaToDB.UpdateRoutine(link, rutina)){
-                        cleanInfRoutine();
-                        lblMensaje.setText("DATOS CREADOS");
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PanelDieta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        // TODO add your handling code here:
-        RoutineToDB rutina = new RoutineToDB();
-        Routine consultaRutina = rutina.FoundRoutine(link, txtNombreRutina.getText());
-        Validacion val = new Validacion();
-
-        try {
-            if(rutina.contarRutinas(link, txtNombreRutina.getText()) == 0){
-                String nombreRutina = txtNombreRutina.getText();
-                ArrayList<String> ejercicios = new ArrayList();
-                String[] StringEjercicios = txtEjercicio.getText().split("\\n");
-                for(String ejercicio : StringEjercicios){
-
-                    ejercicios.add(ejercicio);
-                }
-
-                if(ejercicios.size() > 1){
-                    //Verificar que el nombre no se repita
-                    consultaRutina.setNameRoutines(nombreRutina);
-                    //Verificar que haya almenos una comida en el arreglo de comidas ingresadas
-                    consultaRutina.setTypeRoutine(ejercicios);
-                    if(rutina.CreateRoutine(link, consultaRutina)){
-                        cleanInfRoutine();
-                        lblMensaje.setText("DATOS CREADOS");
-                    }else{
-                        lblMensaje.setText("NO SE PUDIERON CREAR LOS DATOS");
-                    }
-
-                }else{
-                    lblMensaje.setText("NO SE HAN INGRESADO EJERCICIOS");
-
-                }
-            }else{
-                lblMensaje.setText("EL NOMBRE DE LA RUTINA YA EXISTE");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PanelDieta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnCrearActionPerformed
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        RoutineToDB rutinaToDB = new RoutineToDB();
-        Routine rutina = new Routine();
-        rutina = rutinaToDB.FoundRoutine(link, txtNombreRutina.getText());
-        if(rutina!=null){
-            int answer = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar la rutina?", "Confirmación", JOptionPane.YES_NO_OPTION);
-            if (answer == JOptionPane.YES_OPTION) {
-                rutinaToDB.DeleteRoutine(link, rutina);
-                lblMensaje.setText("DATOS ELIMINADOS");
-            }else{
-                lblMensaje.setText("CANCELADO");
-            }
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        RoutineToDB rutinaToDB = new RoutineToDB();
-        Routine rutina = new Routine();
-        rutina = rutinaToDB.FoundRoutine(link, txtNombreRutina.getText());
-        txtEjercicio.setText("");
-        for (String dietitas: rutina.getTypeRoutine()){
-            txtEjercicio.append(dietitas + "\n");
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modeloTabla = (DefaultTableModel) tblRutinas.getModel();
@@ -457,7 +286,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnCargarActionPerformed
 
-<<<<<<< HEAD
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         RoutineToDB rutinaToDB = new RoutineToDB();
@@ -566,8 +394,6 @@ public class InternalRutina extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
-=======
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BD;

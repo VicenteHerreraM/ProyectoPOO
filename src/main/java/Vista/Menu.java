@@ -35,10 +35,7 @@ public class Menu extends javax.swing.JFrame {
         menuRutinas = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-<<<<<<< HEAD
         setBackground(new java.awt.Color(22, 36, 71));
-=======
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
         jMenuBar1.setBackground(new java.awt.Color(22, 36, 71));
         jMenuBar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -87,7 +84,6 @@ public class Menu extends javax.swing.JFrame {
 
     private void menuUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuUsuariosMouseClicked
         
-<<<<<<< HEAD
         if(!dieta.isShowing()&&!rutina.isShowing()){
 
             usuario.setVisible(true);
@@ -98,23 +94,10 @@ public class Menu extends javax.swing.JFrame {
             } catch (java.beans.PropertyVetoException e) {}
         }
         
-=======
-        //PanelUsuario panelUsuario = new PanelUsuario();
-        //panelUsuario.setVisible(true);
-        
-        InternalUsuario Usuario = new InternalUsuario();
-        Usuario.setVisible(true);
-        this.add(Usuario);
-        
-        try {
-           Usuario.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {}
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         
     }//GEN-LAST:event_menuUsuariosMouseClicked
 
     private void menuDietasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDietasMouseClicked
-<<<<<<< HEAD
         
         if(!usuario.isShowing()&&!rutina.isShowing())
         {
@@ -127,23 +110,10 @@ public class Menu extends javax.swing.JFrame {
             } catch (java.beans.PropertyVetoException e) {}
         }
         
-=======
-        //PanelDieta panelDieta = new PanelDieta();
-        //panelDieta.setVisible(true);
-        
-        InternalDieta dieta = new InternalDieta();
-        dieta.setVisible(true);
-        this.add(dieta);
-        
-        try {
-           dieta.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {}
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         
     }//GEN-LAST:event_menuDietasMouseClicked
 
     private void menuRutinasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuRutinasMouseClicked
-<<<<<<< HEAD
         if(!usuario.isShowing()&&!dieta.isShowing())
         {
             
@@ -154,19 +124,6 @@ public class Menu extends javax.swing.JFrame {
                rutina.setSelected(true);
             } catch (java.beans.PropertyVetoException e) {}
         }
-=======
-        //PanelRutina panelRutina = new PanelRutina();
-        //panelRutina.setVisible(true);
-        InternalRutina rutina = new InternalRutina();
-        rutina.setVisible(true);
-        this.add(rutina);
-        
-        try {
-           rutina.setSelected(true);
-        } catch (java.beans.PropertyVetoException e) {}
-        
-        
->>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
     }//GEN-LAST:event_menuRutinasMouseClicked
 
     /**
