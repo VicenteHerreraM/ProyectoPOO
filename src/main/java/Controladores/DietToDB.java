@@ -32,27 +32,6 @@ public class DietToDB implements DietDB {
         return false;
     }
     
-    public int contarDietas(Connection link , String nombreDieta) throws SQLException{
-        int cont = 0;
-        
-        Statement state = link.createStatement();
-
-            // LE DECIMOS QUÉ QUEREMOS LEER (TABLA CLIENTE)
-            query = "SELECT COUNT(*) FROM dieta WHERE Nombre = '"+nombreDieta+"' ";
-
-            //GUARDAMOS EL RESULTADO DE LA CONSULTA EN "RESULTSELECT"
-            ResultSet resultSelect = state.executeQuery(query);
-        if (resultSelect.next()){
-            cont = resultSelect.getInt(1);
-            return cont;
-        }
-        
-        
-        
-
-        return cont;
-    }
-    
     
     @Override    
     public boolean UpdateDiet(Connection link  , Diet dieta) {
@@ -174,9 +153,25 @@ public class DietToDB implements DietDB {
         return null;
     }
 
+    public int CountDietWhithName(Connection link, String nameDiet){
+        int cont = 0;
+        try {
+            
+            Statement state = link.createStatement();
+            
+            query="SELECT COUNT(*) FROM dieta WHERE Nombre='"+nameDiet+"'";
+            ResultSet resultSets=state.executeQuery(query);
+            // RESULTADOS
+            while (resultSets.next()){
+                cont = resultSets.getInt(1);
+            }
+            return cont;
+        } catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
 
-
-
+        return cont;
+    }
 
 }
 

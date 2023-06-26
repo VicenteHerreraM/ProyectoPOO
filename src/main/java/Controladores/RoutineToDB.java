@@ -20,7 +20,7 @@ public class RoutineToDB implements RoutineDB {
         try{
             Gson gson = new Gson();
             String json = gson.toJson(routine.getTypeRoutine());
-            PreparedStatement ps = link.prepareStatement("INSERT INTO rutina (Nombre_Rutina, Ejercicio) VALUES (?,?)");
+            PreparedStatement ps = link.prepareStatement("INSERT INTO rutina (Nombre, Ejercicio) VALUES (?,?)");
             ps.setString(1, routine.getNameRoutines());
             ps.setString(2, json);
             ps.execute();
@@ -30,32 +30,13 @@ public class RoutineToDB implements RoutineDB {
         }
         return false;
     }
-    
-    
-        public int contarRutinas(Connection link , String nombreRutina) throws SQLException{
-        int cont = 0;
-        
-        Statement state = link.createStatement();
-
-            // LE DECIMOS QUÉ QUEREMOS LEER (TABLA CLIENTE)
-            query = "SELECT COUNT(*) FROM rutina WHERE Nombre_Rutina = '"+nombreRutina+"' ";
-
-            //GUARDAMOS EL RESULTADO DE LA CONSULTA EN "RESULTSELECT"
-            ResultSet resultSelect = state.executeQuery(query);
-        if (resultSelect.next()){
-            cont = resultSelect.getInt(1);
-            return cont;
-        }
-        return cont;
-    }
-    
 
     @Override
     public boolean UpdateRoutine(Connection link , Routine rutina) {
         try{
             Gson gson = new Gson();
             String json = gson.toJson(rutina.getTypeRoutine());
-            PreparedStatement ps = link.prepareStatement("UPDATE rutina SET Ejercicio=? WHERE Nombre_Rutina = ? ");
+            PreparedStatement ps = link.prepareStatement("UPDATE rutina SET Ejercicio=? WHERE Nombre = ? ");
             ps.setString(1, json);
             ps.setString(2, rutina.getNameRoutines() ); //Quizas esta linea esta demás.
             ps.execute();
@@ -69,7 +50,7 @@ public class RoutineToDB implements RoutineDB {
     @Override
     public boolean DeleteRoutine(Connection link , Routine rutina) {
         try{
-            PreparedStatement ps = link.prepareStatement("DELETE FROM rutina WHERE Nombre_Rutina = ? ");
+            PreparedStatement ps = link.prepareStatement("DELETE FROM rutina WHERE Nombre = ? ");
             ps.setString(1, rutina.getNameRoutines());
             ps.execute();
             return true;
@@ -90,7 +71,7 @@ public class RoutineToDB implements RoutineDB {
             Statement state = link.createStatement();
 
             // LE DECIMOS QUÉ QUEREMOS LEER (TABLA DIETA)
-            query = "SELECT * FROM rutina ORDER BY Nombre_Rutina ASC";
+            query = "SELECT * FROM rutina ORDER BY Nombre ASC";
             //GUARDAMOS EL RESULADO DE LA CONSULTA EN "RESULTSELECT"
             ResultSet resultSelect = state.executeQuery(query);
 
@@ -99,7 +80,7 @@ public class RoutineToDB implements RoutineDB {
                 Routine routineRead = new Routine();
                 // VAMOS ASIGNANDOLES VALORES A NUESTRA RUTINA DEL PROGRAMA (PROVIENE DE LA DB(
                 routineRead.setIdRoutines(resultSelect.getInt("ID_Rutina"));
-                routineRead.setNameRoutines(resultSelect.getString("Nombre_Rutina"));
+                routineRead.setNameRoutines(resultSelect.getString("Nombre"));
                 routineRead.setTypeRoutine(gson.fromJson(resultSelect.getString("Ejercicio"), type));
 
                 // AGREGAMOS A NUESTRO ARREGLO DE USUARIOS EL CLIENTE SACADO DEL DB
@@ -124,14 +105,14 @@ public class RoutineToDB implements RoutineDB {
             // SE HACE LA CONEXIÓN A LA BASE DE DATOS
             Statement state = link.createStatement();
             // HACEMOS LA CONSULTA A LA BASE DE DATOS
-            query="SELECT * FROM rutina WHERE Nombre_Rutina='"+nombre+"'";
+            query="SELECT * FROM rutina WHERE Nombre='"+nombre+"'";
             ResultSet resultSets=state.executeQuery(query);
             // RESULTADOS
             while (resultSets.next()){
 
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
                 routine.setIdRoutines(resultSets.getInt("ID_Rutina"));
-                routine.setNameRoutines(resultSets.getString("Nombre_Rutina"));
+                routine.setNameRoutines(resultSets.getString("Nombre"));
                 routine.setTypeRoutine(gson.fromJson(resultSets.getString("Ejercicio"), type));
             }
             return routine;
@@ -157,7 +138,7 @@ public class RoutineToDB implements RoutineDB {
 
                 // VAMOS ASIGNANDOLES VALORES A NUESTRO CLIENTE DEL PROGRAMA (PROVIENE DE LA DB(
                 routine.setIdRoutines(resultSets.getInt("ID_Rutina"));
-                routine.setNameRoutines(resultSets.getString("Nombre_Rutina"));
+                routine.setNameRoutines(resultSets.getString("Nombre"));
                 routine.setTypeRoutine(gson.fromJson(resultSets.getString("Ejercicio"), type));
             }
             return routine;
@@ -166,5 +147,25 @@ public class RoutineToDB implements RoutineDB {
         }
 
         return null;
+    }
+    
+    public int CountRoutineWhithName(Connection link, String nameRoutine){
+        int cont = 0;
+        try {
+            
+            Statement state = link.createStatement();
+            
+            query="SELECT COUNT(*) FROM rutina WHERE Nombre='"+nameRoutine+"'";
+            ResultSet resultSets=state.executeQuery(query);
+            // RESULTADOS
+            while (resultSets.next()){
+                cont = resultSets.getInt(1);
+            }
+            return cont;
+        } catch (SQLException sqlExcept) {
+            Logger.getLogger(ConnectionToDB.class.getName()).log(Level.SEVERE, null, sqlExcept);
+        }
+
+        return cont;
     }
 }
