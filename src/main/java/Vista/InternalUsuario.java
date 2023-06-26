@@ -136,8 +136,11 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
         );
 
         setClosable(true);
+<<<<<<< HEAD
         setMaximizable(true);
         setResizable(true);
+=======
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
         BD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -491,10 +494,16 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
                     }else{
                         lblMensaje.setText("VALIDE SUS DATOS POR FAVOR");
                     }
+<<<<<<< HEAD
                 }      
             } catch (ParseException ex) {
                 lblMensaje.setText("EL RUT YA EXISTE");
             }
+=======
+                }       } catch (ParseException ex) {
+                    Logger.getLogger(PanelUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         }else{
             lblMensaje.setText("Usuario no encontrado para modificar");
         }

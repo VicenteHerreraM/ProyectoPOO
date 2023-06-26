@@ -68,7 +68,10 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         btnCargar = new javax.swing.JButton();
 
         setClosable(true);
+<<<<<<< HEAD
         setMaximizable(true);
+=======
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
         BD.setBackground(new java.awt.Color(22, 36, 71));
         BD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -99,6 +102,15 @@ public class InternalDieta extends javax.swing.JInternalFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+        txtNombreDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreDietaActionPerformed(evt);
+            }
+        });
+
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 153));
         jLabel1.setText("Nombre");
@@ -127,6 +139,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -155,6 +168,36 @@ public class InternalDieta extends javax.swing.JInternalFrame {
                                     .addComponent(btnModificar)
                                     .addGap(116, 116, 116))))))
                 .addContainerGap(210, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(35, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnModificar)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(3, 3, 3)
+                                        .addComponent(btnBuscar)))
+                                .addGap(46, 46, 46)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCrear)
+                                    .addComponent(btnEliminar))))
+                        .addGap(24, 24, 24))))
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,14 +220,23 @@ public class InternalDieta extends javax.swing.JInternalFrame {
                     .addComponent(btnBuscar))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD
                     .addComponent(btnEliminar)
                     .addComponent(btnModificar))
+=======
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar))
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
                 .addGap(18, 18, 18)
                 .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
+<<<<<<< HEAD
         BD.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 530, 500));
+=======
+        BD.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 300, 500));
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
         tblDietas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -211,7 +263,11 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblDietas);
 
+<<<<<<< HEAD
         BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 590, 370));
+=======
+        BD.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 490, 370));
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
         jPanel1.setBackground(new java.awt.Color(22, 36, 71));
 
@@ -251,6 +307,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,11 +316,19 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+            .addComponent(BD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel modeloTabla = (DefaultTableModel) tblDietas.getModel();
@@ -323,6 +388,37 @@ public class InternalDieta extends javax.swing.JInternalFrame {
             lblMensaje.setText("DIETA NO ENCONTRADA");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+=======
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        DietToDB dietaToDB = new DietToDB();
+        Diet dieta = dietaToDB.FoundDiet(link, txtNombreDieta.getText());
+        try {
+            if(dietaToDB.contarDietas(link, txtNombreDieta.getText()) > 0){
+                String nombre = txtNombreDieta.getText();
+                ArrayList<String> comidas = new ArrayList();
+                String[] StringComidas = txtComidas.getText().split("\\n");
+                for(String comida : StringComidas){
+
+                    comidas.add(comida);
+                }
+
+                if(comidas.size() > 1){
+                    //Verificar que el nombre no se repita
+                    dieta.setNameRoutines(nombre);
+                    //Verificar que haya almenos una comida en el arreglo de comidas ingresadas
+                    dieta.setTypeRoutine(comidas);
+                    if(dietaToDB.UpdateDiet(link, dieta)){
+                        cleanInfDiet();
+                        lblMensaje.setText("DATOS CREADOS");
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelDieta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
@@ -330,17 +426,31 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         DietToDB dieta = new DietToDB();
         Diet consultaDieta = dieta.FoundDiet(link, txtNombreDieta.getText());
         Validacion val = new Validacion();
+<<<<<<< HEAD
         if(!txtNombreDieta.getText().isEmpty())
         {
             if(dieta.CountDietWhithName(link, txtNombreDieta.getText()) == 0){
+=======
+
+        try {
+            if(dieta.contarDietas(link, txtNombreDieta.getText()) == 0){
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
                 String nombre = txtNombreDieta.getText();
                 ArrayList<String> comidas = new ArrayList();
                 String[] StringComidas = txtComidas.getText().split("\\n");
                 for(String comida : StringComidas){
+<<<<<<< HEAD
                     comidas.add(comida);
                 }
 
                 if(comidas.size()>0 && !comidas.get(0).isEmpty()){
+=======
+
+                    comidas.add(comida);
+                }
+
+                if(comidas.size() > 1){
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
                     //Verificar que el nombre no se repita
                     consultaDieta.setNameRoutines(nombre);
                     //Verificar que haya almenos una comida en el arreglo de comidas ingresadas
@@ -359,6 +469,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
             }else{
                 lblMensaje.setText("EL NOMBRE DE LA DIETA YA EXISTE");
             }
+<<<<<<< HEAD
         }else{
             lblMensaje.setText("INGRESA UN NOMBRE PARA LA DIETA");
         }
@@ -389,6 +500,62 @@ public class InternalDieta extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnModificarActionPerformed
+=======
+        } catch (SQLException ex) {
+            Logger.getLogger(PanelDieta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        DietToDB dietaToDB = new DietToDB();
+        Diet dieta = new Diet();
+        dieta = dietaToDB.FoundDiet(link, txtNombreDieta.getText());
+        if(dieta!=null){
+            int answer = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar el usuario?", "Confirmación", JOptionPane.YES_NO_OPTION);
+            if (answer == JOptionPane.YES_OPTION) {
+                dietaToDB.DeleteDiet(link, dieta);
+                lblMensaje.setText("DATOS ELIMINADOS");
+            }else{
+                lblMensaje.setText("CANCELADO");
+
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtNombreDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreDietaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreDietaActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        DietToDB dietaToDB = new DietToDB();
+        Diet dieta = new Diet();
+        dieta = dietaToDB.FoundDiet(link, txtNombreDieta.getText());
+        txtComidas.setText("");
+        for (String dietitas: dieta.getTypeRoutine()){
+            txtComidas.append(dietitas + "\n");
+        }
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblDietas.getModel();
+        modeloTabla.setRowCount(0);
+        DietToDB dietToDB = new DietToDB();
+        ArrayList<Diet>Dietas = new ArrayList<>();
+        Dietas = dietToDB.ReadDiets(link);
+
+        for(Diet dieta: Dietas){
+            Object[] dato = new Object[2];
+            dato[0] = dieta.getNameRoutines();
+            dato[1] = dieta.getTypeRoutine();
+            modeloTabla.addRow(dato);
+        }
+
+    }//GEN-LAST:event_btnCargarActionPerformed
+>>>>>>> d7420cca9413303f5e35b5105354a0c6e688421f
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
