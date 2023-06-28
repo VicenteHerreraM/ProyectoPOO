@@ -36,6 +36,7 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
         link = connection.getConnection();
         chargeRoutine();
         chargueDiet();
+        loadList();
     }
 
     public void chargeRoutine(){
@@ -78,6 +79,34 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
         txtFNacimiento.setDate(new Date());
     }
     
+    public void loadList()
+    {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblUsuarios.getModel();
+        modeloTabla.setRowCount(0);
+        String formato = "dd-MM-yyyy";
+        DateFormat df = new SimpleDateFormat(formato);
+        ArrayList<Usuario>usuarios=new ArrayList<>();
+        UserToDB userToDB = new UserToDB();
+        usuarios = userToDB.PrintUsers(link);
+        DietToDB dietToDB = new DietToDB();
+        RoutineToDB routineToDB = new RoutineToDB();
+
+        for(Usuario usuario: usuarios){
+            Object[] dato = new Object[9];
+            dato[0] = usuario.getRut();
+            dato[1] = usuario.getName();
+            dato[2] = usuario.getLastName();
+            dato[3] = usuario.getHeight();
+            dato[4] = usuario.getWeight();
+            dato[5] = usuario.getMail();
+            dato[6] = df.format(usuario.getBirthdate());
+            Diet dieta = dietToDB.FoundDietWithID(link,usuario.getTypeDiet());
+            dato[7] = dieta.getNameRoutines();
+            Routine rutina = routineToDB.FoundRoutineWithID(link, usuario.getTypeRoutine());
+            dato[8] = rutina.getNameRoutines();
+            modeloTabla.addRow(dato);
+        }
+    }
     
     
     /**
@@ -451,11 +480,6 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
-    
-    
-    
-    
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         Validacion val = new Validacion();
         UserToDB userToDB = new UserToDB();
@@ -488,6 +512,7 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
                     if(userToDB.UpdateUser(link, usuario)){
                         lblMensaje.setText("DATOS CREADOS SATISFACTORIAMENTE");
                         cleanInfUser();
+                        loadList();
                     }else{
                         lblMensaje.setText("VALIDE SUS DATOS POR FAVOR");
                     }
@@ -538,6 +563,7 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
                 if(user.CreateUser(link, consultaUser)){
                     lblMensaje.setText("DATOS CREADOS SATISFACTORIAMENTE");
                     cleanInfUser();
+                    loadList();
                 }else{
                     lblMensaje.setText("VALIDE SUS DATOS POR FAVOR");
                 }
@@ -557,11 +583,14 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
             if (answer == JOptionPane.YES_OPTION) {
                 userToDB.DeleteUser(link, usuario);
                 lblMensaje.setText("DATOS ELIMINADOS");
+                cleanInfUser();
+                loadList();     
             }else{
                 lblMensaje.setText("CANCELADO");
 
             }
         }
+        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -598,31 +627,7 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        DefaultTableModel modeloTabla = (DefaultTableModel) tblUsuarios.getModel();
-        modeloTabla.setRowCount(0);
-        String formato = "dd-MM-yyyy";
-        DateFormat df = new SimpleDateFormat(formato);
-        ArrayList<Usuario>usuarios=new ArrayList<>();
-        UserToDB userToDB = new UserToDB();
-        usuarios = userToDB.PrintUsers(link);
-        DietToDB dietToDB = new DietToDB();
-        RoutineToDB routineToDB = new RoutineToDB();
-
-        for(Usuario usuario: usuarios){
-            Object[] dato = new Object[9];
-            dato[0] = usuario.getRut();
-            dato[1] = usuario.getName();
-            dato[2] = usuario.getLastName();
-            dato[3] = usuario.getHeight();
-            dato[4] = usuario.getWeight();
-            dato[5] = usuario.getMail();
-            dato[6] = df.format(usuario.getBirthdate());
-            Diet dieta = dietToDB.FoundDietWithID(link,usuario.getTypeDiet());
-            dato[7] = dieta.getNameRoutines();
-            Routine rutina = routineToDB.FoundRoutineWithID(link, usuario.getTypeRoutine());
-            dato[8] = rutina.getNameRoutines();
-            modeloTabla.addRow(dato);
-        }
+        loadList();
     }//GEN-LAST:event_btnCargarActionPerformed
 
 

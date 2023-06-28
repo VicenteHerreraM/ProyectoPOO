@@ -33,9 +33,9 @@ public class InternalRutina extends javax.swing.JInternalFrame {
     public Connection link;
     public InternalRutina() {
         initComponents();
-        
         conexion=new ConnectionToDB();
         link=conexion.getConnection();
+        loadRutine();
     }
     
     public void cleanInfRoutine(){
@@ -43,6 +43,20 @@ public class InternalRutina extends javax.swing.JInternalFrame {
             txtEjercicio.setText("");
     }
 
+    public void loadRutine(){
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblRutinas.getModel();
+        modeloTabla.setRowCount(0);
+        RoutineToDB rutinaToDB = new RoutineToDB();
+        ArrayList<Routine>rutinas = new ArrayList<>();
+        rutinas = rutinaToDB.ReadRoutines(link);
+
+        for(Routine rutina : rutinas){
+            Object[] dato = new Object[2];
+            dato[0] = rutina.getNameRoutines();
+            dato[1] = rutina.getTypeRoutine();
+            modeloTabla.addRow(dato);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -271,19 +285,7 @@ public class InternalRutina extends javax.swing.JInternalFrame {
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel modeloTabla = (DefaultTableModel) tblRutinas.getModel();
-        modeloTabla.setRowCount(0);
-        RoutineToDB rutinaToDB = new RoutineToDB();
-        ArrayList<Routine>rutinas = new ArrayList<>();
-        rutinas = rutinaToDB.ReadRoutines(link);
-
-        for(Routine rutina : rutinas){
-            Object[] dato = new Object[2];
-            dato[0] = rutina.getNameRoutines();
-            dato[1] = rutina.getTypeRoutine();
-            modeloTabla.addRow(dato);
-        }
-
+        loadRutine();
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -313,6 +315,7 @@ public class InternalRutina extends javax.swing.JInternalFrame {
                 rutinaToDB.DeleteRoutine(link, rutina);
                 if(rutinaToDB.CountRoutineWhithName(link, txtNombreRutina.getText())==0){
                     lblMensaje.setText("DATOS ELIMINADOS");
+                    loadRutine();
                     cleanInfRoutine();
                 }else{
                     JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR\n¡¡EXISTE MAS DE UN USUARIO CON ESTA RUTINA!!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -350,6 +353,7 @@ public class InternalRutina extends javax.swing.JInternalFrame {
                     if(rutina.CreateRoutine(link, consultaRutina))
                     {
                         cleanInfRoutine();
+                        loadRutine();
                         lblMensaje.setText("DATOS CREADOS");
                     }else{
                         lblMensaje.setText("NO SE PUDIERON CREAR LOS DATOS");
@@ -385,6 +389,7 @@ public class InternalRutina extends javax.swing.JInternalFrame {
                 rutina.setTypeRoutine(ejercicios);
                 if(rutinaToDB.UpdateRoutine(link, rutina)){
                     cleanInfRoutine();
+                    loadRutine();
                     lblMensaje.setText("DATOS MODIFICADOS CORRECTAMENTE");
                 }
             }

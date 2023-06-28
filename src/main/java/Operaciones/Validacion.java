@@ -55,17 +55,12 @@ public class Validacion{
     }
 
     public Double isDouble(String numero) throws ParseException {
-        NumberFormat nfUS = NumberFormat.getInstance(Locale.US);
-        NumberFormat nfFR = NumberFormat.getInstance(Locale.FRANCE);
         double num=0;
         if(numero.isEmpty()){
                 JOptionPane.showMessageDialog(null, "INGRESE UN PESO", "Error", JOptionPane.ERROR_MESSAGE);
+                return num;
         }
-        try {
-            num = nfUS.parse(numero).doubleValue();
-        } catch (ParseException e) {
-            num = nfFR.parse(numero).doubleValue();
-        }
+        num = Double.parseDouble(numero.replace(',', '.'));
         if(num<=2.0||num>635){
                 JOptionPane.showMessageDialog(null, "PESO NO VÁLIDO\ningrese un peso mayor a 2.0 y en formato de kg: 11,11 ó 11.11", "Error", JOptionPane.ERROR_MESSAGE);
         }

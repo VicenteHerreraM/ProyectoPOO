@@ -31,13 +31,27 @@ public class InternalDieta extends javax.swing.JInternalFrame {
         initComponents();
         connection = new ConnectionToDB();
         link = connection.getConnection();
+        loadDiet();
     }
     public void cleanInfDiet(){
         txtNombreDieta.setText("");
         txtComidas.setText("");
     }
     
-    
+    public void loadDiet(){
+        DefaultTableModel modeloTabla = (DefaultTableModel) tblDietas.getModel();
+        modeloTabla.setRowCount(0);
+        DietToDB dietToDB = new DietToDB();
+        ArrayList<Diet>Dietas = new ArrayList<>();
+        Dietas = dietToDB.ReadDiets(link);
+
+        for(Diet dieta: Dietas){
+            Object[] dato = new Object[2];
+            dato[0] = dieta.getNameRoutines();
+            dato[1] = dieta.getTypeRoutine();
+            modeloTabla.addRow(dato);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,20 +279,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modeloTabla = (DefaultTableModel) tblDietas.getModel();
-        modeloTabla.setRowCount(0);
-        DietToDB dietToDB = new DietToDB();
-        ArrayList<Diet>Dietas = new ArrayList<>();
-        Dietas = dietToDB.ReadDiets(link);
-
-        for(Diet dieta: Dietas){
-            Object[] dato = new Object[2];
-            dato[0] = dieta.getNameRoutines();
-            dato[1] = dieta.getTypeRoutine();
-            modeloTabla.addRow(dato);
-        }
-
+        loadDiet();
     }//GEN-LAST:event_btnCargarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -310,6 +311,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
 
                 if( dietaToDB.CountDietWhithName(link, txtNombreDieta.getText())==0){
                     lblMensaje.setText("DATOS ELIMINADOS");
+                    loadDiet();
                     cleanInfDiet();
                 }else{
                     JOptionPane.showMessageDialog(null, "NO SE PUDO ELIMINAR\n¡¡EXISTE MAS DE UN USUARIO CON ESTA DIETA!!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -347,6 +349,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
                     consultaDieta.setTypeRoutine(comidas);
                     if(dieta.CreateDiet(link, consultaDieta)){
                         cleanInfDiet();
+                        loadDiet();
                         lblMensaje.setText("DATOS CREADOS");
                     }else{
                         lblMensaje.setText("NO SE PUDIERON CREAR LOS DATOS");
@@ -384,6 +387,7 @@ public class InternalDieta extends javax.swing.JInternalFrame {
                 dieta.setTypeRoutine(comidas);
                 if(dietaToDB.UpdateDiet(link, dieta)){
                     cleanInfDiet();
+                    loadDiet();
                     lblMensaje.setText("DATOS MODIFICADOS CORRECTAMENTE");
                 }
             }
