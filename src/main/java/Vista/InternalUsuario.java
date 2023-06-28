@@ -535,8 +535,8 @@ public class InternalUsuario extends javax.swing.JInternalFrame {
                     val.isName(txtNombre.getText()) && val.isName(txtApellido.getText())&&
                     val.isStrongPassword(txtContrasenia.getText())&&
                     (val.isDouble(txtPeso.getText())>2.0 && val.isDouble(txtPeso.getText())<636)&&
-                    (val.isPositiveInteger(txtAltura.getText())>40 && val.isPositiveInteger(txtAltura.getText())<301)&&
-                    (val.isValidDate(txtFNacimiento.getDate())>15 && val.isValidDate(txtFNacimiento.getDate())<121)){
+                    (val.isPositiveInteger(txtAltura.getText())>=40 && val.isPositiveInteger(txtAltura.getText())<301)&&
+                    (val.isValidDate(txtFNacimiento.getDate())>3 && val.isValidDate(txtFNacimiento.getDate())<121)){
                 
                 int altura = val.isPositiveInteger(txtAltura.getText());
                 double peso = 0;

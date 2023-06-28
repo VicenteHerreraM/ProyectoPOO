@@ -91,14 +91,14 @@ public class Validacion{
             LocalDate localNow = LocalDate.now();
             Period period = Period.between(localDate, localNow);
             int years=period.getYears();
-            if(years>120){
+            if(years>=120){
                 JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA", "Error", JOptionPane.ERROR_MESSAGE); 
-            }else if(years<16){
-                JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE); 
+            }else if(years<=4){
+                JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 4 anyos", "Error", JOptionPane.ERROR_MESSAGE); 
             }
             return years;
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 16 anyos", "Error", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(null, "FECHA NO VÁLIDA\nsólo para mayores de 4 anyos", "Error", JOptionPane.ERROR_MESSAGE); 
             return 0;
         }
     }
@@ -141,7 +141,6 @@ public class Validacion{
             return false;
         }
 
-        // Calcular el dígito verificador usando el algoritmo de la página web
         int suma = 0;
         int factor = 2;
         while (num > 0) {
